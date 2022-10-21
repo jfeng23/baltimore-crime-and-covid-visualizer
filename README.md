@@ -1,3 +1,13 @@
+# NOTE TO ALL:
+
+To install Node.js dependencies when cloning for your local repository.
+
+### `cd .\baltimore-crime-and-covid-visualizer\`
+
+### `npm install`
+
+VOILA, SIMPLE AS THAT :)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
