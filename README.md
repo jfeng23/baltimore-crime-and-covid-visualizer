@@ -18,9 +18,9 @@ To setup Flask.
 
 NPM Scripts:
 
-### `'npm run build-flask'`
+### `npm run build-flask`
 
-### `'npm run start-flask'`
+### `npm run start-flask`
 
 # Getting Started with Create React App
 
