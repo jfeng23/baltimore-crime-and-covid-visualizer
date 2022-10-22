@@ -6,8 +6,6 @@ To setup Flask and virtual environment:
 
 To install Node.js dependencies when cloning for your local repository:
 
-### `cd .\baltimore-crime-and-covid-visualizer\`
-
 ### `npm install`
 
 VOILA, SIMPLE AS THAT :)
