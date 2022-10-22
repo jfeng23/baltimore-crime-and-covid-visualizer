@@ -10,8 +10,8 @@ const Maps = () => {
 
   	const mapStyles = {
     	overflow: "hidden",
-    	width: "100%",
-    	height: "100vh"
+    	height: "100vh",
+		margin: 15,
 	};
 
 	const row = {

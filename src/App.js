@@ -16,9 +16,6 @@ return (
 	<Routes>
 		<Route exact path='/' element={<Home />} />
 		<Route path='/maps' element={<Maps />} />
-		{/* <Route path='/contact' element={<Contact/>} />
-		<Route path='/blogs' element={<Blogs/>} />
-		<Route path='/sign-up' element={<SignUp/>} /> */}
 	</Routes>
 	</Router>
 );
