@@ -8,19 +8,17 @@ To install Node.js dependencies when cloning for your local repository.
 
 VOILA, SIMPLE AS THAT :)
 
-To setup Flask.
-
-### `cd .\backend\`
-
-### `python -m venv venv`
-
-### `./venv/Scripts/activate pip install -r requirements.txt`
-
-NPM Scripts:
+To setup Flask:
 
 ### `npm run build-flask`
 
+# How to run React and Flask:
+
+Run Flask backend:
 ### `npm run start-flask`
+
+Run React frontend:
+### `npm start`
 
 # Getting Started with Create React App
 
