@@ -21,6 +21,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "build-venv": "cd ./backend && python -m venv venv && ./venv/Scripts/activate && pip install -r requirements.txt",
+    "start-flask": "cd ./backend && ./venv/Scripts/activate && flask run",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
