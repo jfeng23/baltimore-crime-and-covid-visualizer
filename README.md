@@ -12,7 +12,7 @@ To install Node.js dependencies when cloning for your local repository:
 
 VOILA, SIMPLE AS THAT :)
 
-# How to run React and Flask:
+# How to run Flask and React:
 
 Run Flask backend:
 ### `npm run start-flask`
