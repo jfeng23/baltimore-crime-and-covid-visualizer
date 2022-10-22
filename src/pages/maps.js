@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import Selector from "../components/Selector";
+import { RowDiv } from "../components/Selector/SelectorElements"
 import L from "leaflet"
 
 const Maps = () => {
@@ -12,9 +14,22 @@ const Maps = () => {
     	height: "100vh"
 	};
 
+	const row = {
+		display: 'flex',
+		flexWrap: 'wrap'
+	};
+
+	const selectorFlex = {
+		flex: '25%',
+	};
+
+	const bodyFlex = {
+		flex: '75%'
+	};
+
 	const mapParams = {
-		center: [37.0902, -95.7129],
-		zoom: 3,
+		center: [39.268236, -76.609383],
+		zoom: 12.4,
 		zoomControl: false,
 		maxBounds: L.latLngBounds(L.latLng(-150, -240), L.latLng(150, 240)),
 		layers: [MAP_TILE]
@@ -25,11 +40,21 @@ const Maps = () => {
 	}, []);
 
 	return (
-		<>
+		<div>
+			<div style={row}>
+				
+				<div style={selectorFlex}>
+					<Selector></Selector>
+				</div>
 
-			<div id="map" style={mapStyles}></div>
 
-		</>
+				<div style={bodyFlex}>
+					<div id="map" style={mapStyles}></div>
+				</div>
+
+
+			</div>
+		</div>
 	);
 };
 
