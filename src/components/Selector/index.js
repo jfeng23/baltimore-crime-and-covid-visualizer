@@ -1,5 +1,5 @@
 import React from "react";
-import { SelectorSection, SelectorTitle } from "./SelectorElements"
+import { SelectorSection, SelectorTitle, SelectorButton } from "./SelectorElements"
   
 const Selector = () => {
   return (
