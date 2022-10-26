@@ -10,13 +10,9 @@ const Maps = () => {
   	const mapStyles = {
     	overflow: "hidden",
     	height: "100vh",
-<<<<<<< Updated upstream
-		margin: 15,
-=======
 		margin: 10,
 		border: "3px solid #0909FF",
 		borderRadius: 10
->>>>>>> Stashed changes
 	};
 
 	const row = {

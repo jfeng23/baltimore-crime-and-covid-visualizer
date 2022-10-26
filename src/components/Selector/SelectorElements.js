@@ -5,12 +5,8 @@ export const SelectorSection = styled.div`
     padding: 10px;
     background: lightgrey;
     height: 100vh;
-<<<<<<< Updated upstream
-    border-radius: 15px;
-=======
     border: 3px solid #0909FF;
     border-radius: 10px;
->>>>>>> Stashed changes
 `;
 
 export const SelectorTitle = styled.label`
@@ -20,8 +16,6 @@ export const SelectorTitle = styled.label`
     padding: 5px;
     text-align: center;
     font-family: Comic Sans MS;
-<<<<<<< Updated upstream
-=======
     border: 3px solid #8989FF;
     border-radius: 8px;
     background-color: white;
@@ -53,5 +47,4 @@ export const SelectorButton = styled.button`
         position:relative;
         top:1px;
     }
->>>>>>> Stashed changes
 `;
