@@ -7,7 +7,12 @@ height: 85px;
 display: flex;
 justify-content: space-between;
 z-index: 12;
+<<<<<<< Updated upstream
 border-radius: 15px;
+=======
+border: 3px solid #0909FF;
+border-radius: 10px;
+>>>>>>> Stashed changes
 margin: 10px;
 `;
 

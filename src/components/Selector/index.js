@@ -6,6 +6,15 @@ const Selector = () => {
     <>
       <SelectorSection>
         <SelectorTitle>Selector</SelectorTitle>
+<<<<<<< Updated upstream
+=======
+        <SelectorButton>Crime</SelectorButton>
+        <SelectorButton>Assault</SelectorButton>
+        <SelectorButton>Homicide</SelectorButton>
+        <SelectorButton>Armed Robbery</SelectorButton>
+        <SelectorButton>Theft</SelectorButton>
+        <SelectorButton>COVID-19</SelectorButton>
+>>>>>>> Stashed changes
       </SelectorSection>
     </>
   );
