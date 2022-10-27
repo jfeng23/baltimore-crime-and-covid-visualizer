@@ -69,6 +69,8 @@ const Maps = () => {
 		heatmapLayer.setData(testData);
 	}, []);
 
+	
+
 	return (
 		<div>
 			<div style={row}>
