@@ -5,12 +5,12 @@ export const SelectorSection = styled.div`
     padding: 10px;
     background: lightgrey;
     height: 100vh;
-    border: 3px solid #0909FF;
+    border: 3px solid #8989FF;
     border-radius: 10px;
 `;
 
 export const SelectorTitle = styled.label`
-    font-size: 3em;
+    font-size: 2.2em;
     color: #333333;
     display: block;
     padding: 5px;
