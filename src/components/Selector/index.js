@@ -5,13 +5,13 @@ const Selector = () => {
   return (
     <>
       <SelectorSection>
-        <SelectorTitle>Selector</SelectorTitle>
+        <SelectorTitle>Filters:</SelectorTitle>
+        <SelectorButton>COVID-19</SelectorButton>
         <SelectorButton>Crime</SelectorButton>
         <SelectorButton>Assault</SelectorButton>
         <SelectorButton>Homicide</SelectorButton>
         <SelectorButton>Armed Robbery</SelectorButton>
         <SelectorButton>Theft</SelectorButton>
-        <SelectorButton>COVID-19</SelectorButton>
       </SelectorSection>
     </>
   );

@@ -12,7 +12,7 @@ const Maps = () => {
     	overflow: "hidden",
     	height: "100vh",
 		margin: 10,
-		border: "3px solid #0909FF",
+		border: "3px solid #8989FF",
 		borderRadius: 10
 	};
 
