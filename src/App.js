@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route}
 	from 'react-router-dom';
+import Navbar from './components/Navbar';
 import Home from './pages';
 import Maps from './pages/maps';
-//import Blogs from './pages/blogs';
-//import SignUp from './pages/signup';
-//import Contact from './pages/contact';
+import Charts from './pages/charts'
+import Footer from './components/Footer';
 
 function App() {
 return (
@@ -16,7 +15,9 @@ return (
 	<Routes>
 		<Route exact path='/' element={<Home />} />
 		<Route path='/maps' element={<Maps />} />
+		<Route path='/charts' element={<Charts />} />
 	</Routes>
+	<Footer></Footer>
 	</Router>
 );
 }

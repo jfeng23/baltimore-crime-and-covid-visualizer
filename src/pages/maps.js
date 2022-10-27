@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Selector from "../components/Selector";
-import { RowDiv } from "../components/Selector/SelectorElements"
 import L from "leaflet"
 import HeatmapOverlay from 'leaflet-heatmap'
 
@@ -12,8 +11,8 @@ const Maps = () => {
   	const mapStyles = {
     	overflow: "hidden",
     	height: "100vh",
-		margin: 15,
-		border: "4px solid black",
+		margin: 10,
+		border: "3px solid #8989FF",
 		borderRadius: 10
 	};
 
@@ -30,13 +29,11 @@ const Maps = () => {
 		flex: '75%'
 	};
 
-	
 	// don't forget to include leaflet-heatmap.js
 	var testData = {
 		max: 8,
 		data: [{lat: 39.284242, lng:-76.691404, count: 30}, {lat: 39.239970, lng:-76.679450, count: 22}]
 	};
-
 	
 	var cfg = {
 		// radius should be small ONLY if scaleRadius is true (or small radius is intended)
