@@ -29,17 +29,19 @@ const Maps = () => {
 		flex: '75%'
 	};
 
+	// HERE, YOU CAN TEST CHANGING "data" TO A JSON FILE, WITH LAT:, LNG:, AND COUNT: //
+
 	// don't forget to include leaflet-heatmap.js
 	var testData = {
 		max: 8,
-		data: [{lat: 39.284242, lng:-76.691404, count: 30}, {lat: 39.239970, lng:-76.679450, count: 22}]
+		data: [{lat: 39.284242, lng:-76.691404, count: 30}, {lat: 39.239970, lng:-76.679450, count: 22}, {lat: 39.32, lng: -76.7, count: 50}]
 	};
 	
 	var cfg = {
 		// radius should be small ONLY if scaleRadius is true (or small radius is intended)
 		// if scaleRadius is false it will be the constant radius used in pixels
-		"radius": .05,
-		"maxOpacity": .6,
+		"radius": .03,
+		"maxOpacity": 0.5,
 		// scales the radius based on map zoom
 		"scaleRadius": true,
 		// if set to false the heatmap uses the global maximum for colorization
@@ -55,7 +57,7 @@ const Maps = () => {
 	};
 	
   	var heatmapLayer = new HeatmapOverlay(cfg);
-
+	
 	const mapParams = {
 		center: [39.268236, -76.609383],
 		zoom: 12.4,

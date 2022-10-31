@@ -5,7 +5,7 @@ const Home = () => {
 
 	return (
 		<>
-			<img src={UMBCLOGO} width={'99%'}></img>
+			<img src={UMBCLOGO} alt='UMBC-LOGO' width={'99%'}></img>
 		</>
 	);
 };

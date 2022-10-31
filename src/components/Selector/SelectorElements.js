@@ -48,3 +48,30 @@ export const SelectorButton = styled.button`
         top:1px;
     }
 `;
+
+export const DateDiv = styled.div`
+    font-size: 2em;
+    color: #333333;
+    display: block;
+    padding: 5px;
+    padding-bottom: 10px;
+    font-family: Comic Sans MS;
+    border: 3px solid #8989FF;
+    border-radius: 8px;
+    background-color: white;
+    margin-bottom: 5px; 
+`;
+
+export const DateLabel = styled.label`
+    
+`;
+
+export const DateInput = styled.input`
+    width: 50%;
+`;
+
+export const DateButton = styled.button`
+    font-family: Comic Sans MS;
+    width: 25%;
+    margin-left: 5px;
+`;

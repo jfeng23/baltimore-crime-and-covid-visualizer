@@ -1,5 +1,5 @@
 import React from "react";
-import { SelectorSection, SelectorTitle, SelectorButton } from "./SelectorElements"
+import { SelectorSection, SelectorTitle, SelectorButton, DateInput, DateButton, DateLabel, DateDiv } from "./SelectorElements"
   
 const Selector = () => {
   return (
@@ -12,6 +12,13 @@ const Selector = () => {
         <SelectorButton>Armed Robbery</SelectorButton>
         <SelectorButton>Theft</SelectorButton>
         <SelectorButton>COVID-19</SelectorButton>
+
+        <DateDiv>
+          <DateLabel>Date:</DateLabel>
+          <DateInput type={'date'}></DateInput>
+          <DateButton>Submit</DateButton>
+        </DateDiv>
+
       </SelectorSection>
     </>
   );
