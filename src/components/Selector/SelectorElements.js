@@ -72,6 +72,6 @@ export const DateInput = styled.input`
 
 export const DateButton = styled.button`
     font-family: Comic Sans MS;
-    width: 25%;
+    width: 98%;
     margin-left: 5px;
 `;

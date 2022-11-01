@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
+import axios from "axios";
 import Selector from "../components/Selector";
-import L from "leaflet"
-import HeatmapOverlay from 'leaflet-heatmap'
+import L from "leaflet";
+import HeatmapOverlay from 'leaflet-heatmap';
 
 const Maps = () => {
 
@@ -29,7 +30,24 @@ const Maps = () => {
 		flex: '75%'
 	};
 
-	// HERE, YOU CAN TEST CHANGING "data" TO A JSON FILE, WITH LAT:, LNG:, AND COUNT: //
+	// -------------------------------------------------------------------//
+
+	// here, we can choose to grab all of the data, or only what we want to show
+	// right now, it is going to grab all the data on the /maps branch
+	// so in the 'mapData' would (hopefully) be a dictionary of lats, lngs, and counts
+
+	// After that, you could then change the 'data' variable in 'testData' (below this)
+	// to mapData
+
+	const [mapData, setData] = React.useState(null);
+
+	React.useEffect(() => {
+		axios.get("http://localhost:3000/maps")
+		.then((response) => {
+			setData(response.data);
+		});
+	}, []);
+	// -------------------------------------------------------------------//
 
 	// don't forget to include leaflet-heatmap.js
 	var testData = {

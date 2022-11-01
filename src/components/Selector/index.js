@@ -14,7 +14,9 @@ const Selector = () => {
         <SelectorButton>COVID-19</SelectorButton>
 
         <DateDiv>
-          <DateLabel>Date:</DateLabel>
+          <DateLabel>Start Date:</DateLabel>
+          <DateInput type={'date'}></DateInput>
+          <DateLabel>End Date:</DateLabel>
           <DateInput type={'date'}></DateInput>
           <DateButton>Submit</DateButton>
         </DateDiv>
