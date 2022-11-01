@@ -1,12 +1,24 @@
-# NOTE TO ALL:
+# How to setup Flask and React:
 
-To install Node.js dependencies when cloning for your local repository.
+To setup Flask and virtual environment:
 
-### `cd .\baltimore-crime-and-covid-visualizer\`
+### `npm run build-flask`
+
+To install Node.js dependencies when cloning for your local repository:
 
 ### `npm install`
 
 VOILA, SIMPLE AS THAT :)
+
+# How to run Flask and React:
+
+Run Flask backend:
+### `npm run start-flask`
+
+Run React frontend:
+### `npm start`
+
+# REACT APP README
 
 # Getting Started with Create React App
 
