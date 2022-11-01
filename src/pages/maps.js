@@ -31,7 +31,7 @@ const Maps = () => {
 
 	// don't forget to include leaflet-heatmap.js
 	var testData = {
-		max: 8,
+		max: 10000,
 		data: [{lat: 39.284242, lng:-76.691404, count: 30}, {lat: 39.239970, lng:-76.679450, count: 22}]
 	};
 	
