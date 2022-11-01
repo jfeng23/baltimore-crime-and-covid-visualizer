@@ -39,7 +39,7 @@ conn.execute('''
         row_id INTEGER NOT NULL,
         long INTEGER NOT NULL,
         lat INTEGER NOT NULL,
-        date TEXTNOT NULL,
+        date TEXT NOT NULL,
         type_code TEXT NOT NULL,
         type TEXT NOT NULL,
 
