@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
+import axios from "axios";
 import Selector from "../components/Selector";
-import L from "leaflet"
-import HeatmapOverlay from 'leaflet-heatmap'
+import L from "leaflet";
+import HeatmapOverlay from 'leaflet-heatmap';
 
 const Maps = () => {
 
@@ -29,17 +30,36 @@ const Maps = () => {
 		flex: '75%'
 	};
 
+	// -------------------------------------------------------------------//
+
+	// here, we can choose to grab all of the data, or only what we want to show
+	// right now, it is going to grab all the data on the /maps branch
+	// so in the 'mapData' would (hopefully) be a dictionary of lats, lngs, and counts
+
+	// After that, you could then change the 'data' variable in 'testData' (below this)
+	// to mapData
+
+	const [mapData, setData] = React.useState(null);
+
+	React.useEffect(() => {
+		axios.get("http://localhost:3000/maps")
+		.then((response) => {
+			setData(response.data);
+		});
+	}, []);
+	// -------------------------------------------------------------------//
+
 	// don't forget to include leaflet-heatmap.js
 	var testData = {
-		max: 10000,
-		data: [{lat: 39.284242, lng:-76.691404, count: 30}, {lat: 39.239970, lng:-76.679450, count: 22}]
+		max: 8,
+		data: [{lat: 39.284242, lng:-76.691404, count: 30}, {lat: 39.239970, lng:-76.679450, count: 22}, {lat: 39.32, lng: -76.7, count: 50}]
 	};
 	
 	var cfg = {
 		// radius should be small ONLY if scaleRadius is true (or small radius is intended)
 		// if scaleRadius is false it will be the constant radius used in pixels
-		"radius": .05,
-		"maxOpacity": .6,
+		"radius": .03,
+		"maxOpacity": 0.5,
 		// scales the radius based on map zoom
 		"scaleRadius": true,
 		// if set to false the heatmap uses the global maximum for colorization
@@ -55,7 +75,7 @@ const Maps = () => {
 	};
 	
   	var heatmapLayer = new HeatmapOverlay(cfg);
-
+	
 	const mapParams = {
 		center: [39.268236, -76.609383],
 		zoom: 12.4,
