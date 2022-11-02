@@ -1,6 +1,18 @@
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 
+export const NavHeader = styled.div`
+background: #0D99ED;
+height: 50px;
+text-align: center;
+border: 3px solid #0909FF;
+border-radius: 10px;
+margin: 10px;
+color: white;
+font-family: Comic Sans MS;
+font-size: 2em;
+`
+
 export const Nav = styled.nav`
 background: #8989FF;
 height: 85px;
