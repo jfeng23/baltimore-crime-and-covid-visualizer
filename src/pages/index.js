@@ -1,5 +1,5 @@
 import React from 'react';
-import UMBCLOGO from "./UMBC-LOGO.png";
+import UMBCLOGO from "./UMBC-LOGO.png"
 
 const Home = () => {
 
