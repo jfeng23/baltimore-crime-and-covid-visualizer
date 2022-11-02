@@ -5,10 +5,14 @@ const Charts = () => {
 
     const mapStyles = {
     	overflow: "hidden",
+<<<<<<< Updated upstream
     	height: "100vh",
 		margin: 10,
 		border: "3px solid #8989FF",
 		borderRadius: 10
+=======
+    	height: "100vh"
+>>>>>>> Stashed changes
 	};
 
 	const row = {
