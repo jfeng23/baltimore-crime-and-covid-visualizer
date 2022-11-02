@@ -1,23 +1,16 @@
 import React from "react";
-import { SelectorSection, SelectorTitle, SelectorButton } from "./SelectorElements"
+import { SelectorSection, SelectorTitle, SelectorButton, DateButton, DateDiv, DateInput, DateLabel } from "./SelectorElements"
   
 const Selector = () => {
   return (
     <>
       <SelectorSection>
-<<<<<<< Updated upstream
-        <SelectorTitle>Filters:</SelectorTitle>
-        <SelectorButton>COVID-19</SelectorButton>
-=======
         <SelectorTitle>Select Data Set</SelectorTitle>
->>>>>>> Stashed changes
         <SelectorButton>Crime</SelectorButton>
         <SelectorButton>Assault</SelectorButton>
         <SelectorButton>Homicide</SelectorButton>
         <SelectorButton>Armed Robbery</SelectorButton>
         <SelectorButton>Theft</SelectorButton>
-<<<<<<< Updated upstream
-=======
         <SelectorButton>COVID-19</SelectorButton>
 
         <br></br>
@@ -29,7 +22,6 @@ const Selector = () => {
           <DateButton>Submit</DateButton>
         </DateDiv>
 
->>>>>>> Stashed changes
       </SelectorSection>
     </>
   );

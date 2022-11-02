@@ -2,17 +2,6 @@ import styled from "styled-components";
 
 export const SelectorSection = styled.div`
     padding: 10px;
-<<<<<<< Updated upstream
-    background: lightgrey;
-    height: 100vh;
-    border: 3px solid #8989FF;
-    border-radius: 10px;
-`;
-
-export const SelectorTitle = styled.label`
-    font-size: 2.2em;
-    color: #333333;
-=======
     background: #a3a3c2;
     height: 98vh;
     font-family: Verdana;
@@ -20,7 +9,6 @@ export const SelectorTitle = styled.label`
 
 export const SelectorTitle = styled.label`
     font-size: 2em;
->>>>>>> Stashed changes
     display: block;
     padding: 5px;
     text-align: left;
@@ -49,8 +37,6 @@ export const SelectorButton = styled.button`
         position:relative;
         top:1px;
     }
-<<<<<<< Updated upstream
-=======
 `;
 
 export const DateDiv = styled.div`
@@ -72,5 +58,4 @@ export const DateInput = styled.input`
 export const DateButton = styled.button`
     width: 98%;
     height: 30px;
->>>>>>> Stashed changes
 `;
