@@ -56,6 +56,7 @@ export const DateInput = styled.input`
 `;
 
 export const DateButton = styled.button`
+    font-size: 0.6em;
     width: 98%;
     height: 30px;
 `;
