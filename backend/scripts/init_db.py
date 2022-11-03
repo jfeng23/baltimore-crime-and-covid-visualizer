@@ -16,6 +16,13 @@ conn.close()
 
 print("Tables created successfully")
 
+# scan for all MD_Covid_...csvs, loop each csv, each row, insert to covid_cases table
+# load corresponding zipcodes and coordinates from geopy geocode to zipcode table
+# zipcode array for tracking 
+
+# when loading crime data, check if coor reverese geocoded is in zipcode table; if not, add to zipcode table
+# ^^^ to add any missing zipcodes missed from MD_Covid data
+
 '''
 table = pd.read_csv('../data/zipcodes_by_coor.csv')
 cur = conn.cursor()
