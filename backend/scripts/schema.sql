@@ -1,0 +1,28 @@
+DROP TABLE IF EXISTS zipcode;
+DROP TABLE IF EXISTS covid_cases;
+DROP TABLE IF EXISTS crime;
+
+CREATE TABLE zipcode (
+  zipcode INTEGER PRIMARY KEY,
+  lat INTEGER NOT NULL,
+  long INTEGER NOT NULL
+);
+
+CREATE TABLE covid_cases (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  date TEXT NOT NULL,
+  total_cases INTEGER NOT NULL,
+  zipcode INTEGER,
+  FOREIGN KEY(zipcode) REFERENCES zipcode(zipcode) ON UPDATE CASCADE
+);
+
+CREATE TABLE crime (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  long INTEGER NOT NULL,
+  lat INTEGER NOT NULL,
+  date TEXT NOT NULL,
+  type_code TEXT NOT NULL,
+  type TEXT NOT NULL,
+  zipcode INTEGER,
+  FOREIGN KEY(zipcode) REFERENCES zipcode(zipcode) ON UPDATE CASCADE
+);
