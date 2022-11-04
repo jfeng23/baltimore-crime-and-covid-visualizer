@@ -18,7 +18,16 @@ print("Tables created successfully")
 
 # scan for all MD_Covid_...csvs, loop each csv, each row, insert to covid_cases table
 # load corresponding zipcodes and coordinates from geopy geocode to zipcode table
-# zipcode array for tracking 
+# zipcode array for tracking
+
+path = '..' + os.sep + 'data' + os.sep
+
+for csv in os.listdir(path):
+    if "MD_Covid" in csv:
+        table = pd.read_csv(path + csv)
+        for i, row in table.iterrows():
+            pass
+        print(f"{csv} done")
 
 # when loading crime data, check if coor reverese geocoded is in zipcode table; if not, add to zipcode table
 # ^^^ to add any missing zipcodes missed from MD_Covid data
