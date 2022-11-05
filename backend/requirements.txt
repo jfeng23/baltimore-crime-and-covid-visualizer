@@ -3,3 +3,5 @@ python-dotenv
 flask-cors
 db-sqlite3
 pandas
+geopandas
+geopy
