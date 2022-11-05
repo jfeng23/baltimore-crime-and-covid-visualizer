@@ -38,7 +38,7 @@ zipcodes = []
 print("Loading tables into sql...")
 for csv in os.listdir(PATH):
 
-    # load COVID total_cases into sql
+    # load COVID total_cases into db
     if "MD_Covid" in csv:
         if "2020" in csv: year = "2020"
         elif "2021" in csv: year = "2021"
@@ -77,6 +77,11 @@ for csv in os.listdir(PATH):
                             cur.execute('INSERT INTO covid_cases (date, total_cases, zipcode) VALUES(?, ?, ?)', params)
                     except:
                         pass
+
+        # load CRIME_part_1 into db
+
+        if "Part_1_Crime" in csv:
+            pass
                     
         print(f"{csv} : done")
 
