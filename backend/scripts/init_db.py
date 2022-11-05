@@ -17,7 +17,7 @@ conn.commit()
 print("Tables created successfully")
 
 def get_zipcode_from_address(address):
-    geolocator = Nominatim(user_agent="bccv")
+    geolocator = Nominatim(user_agent="jfeng3@umbc.edu")
     location = geolocator.geocode(address)
     zipcode = location.address.split(",")[-2].strip()
     return zipcode
@@ -44,7 +44,7 @@ for csv in os.listdir(PATH):
         elif "2021" in csv: year = "2021"
         elif "2022" in csv: year = "2022"
 
-        geolocator = Nominatim(user_agent="bccv")
+        geolocator = Nominatim(user_agent="jfeng3@umbc.edu")
 
         table = pd.read_csv(PATH + csv)
         for i, row in table.iterrows():
