@@ -1,9 +1,8 @@
 import os
 import sqlite3
 import pandas as pd
-import geopandas as gpd
-import geopy
 import math
+from geopy.geocoders import Nominatim
 
 if os.path.exists('baltimore_db.sqlite'):
     os.remove('baltimore_db.sqlite')
@@ -26,6 +25,12 @@ path = '..' + os.sep + 'data' + os.sep
 
 zipcodes = []
 
+def get_zipcode_from_address(address):
+    geolocator = Nominatim(user_agent="bccv")
+    location = geolocator.geocode(address)
+    zipcode = location.address.split(",")[-2].strip()
+    return zipcode
+
 print("loading tables into sql...")
 for csv in os.listdir(path):
 
@@ -35,7 +40,7 @@ for csv in os.listdir(path):
         elif "2021" in csv: year = "2021"
         elif "2022" in csv: year = "2022"
 
-        geolocator = geopy.Nominatim(user_agent="bccv")
+        geolocator = Nominatim(user_agent="bccv")
 
         table = pd.read_csv(path + csv)
         for i, row in table.iterrows():
