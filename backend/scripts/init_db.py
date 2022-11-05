@@ -1,6 +1,7 @@
 import os
 import sqlite3
 import pandas as pd
+from geopy.geocoders import Nominatim
 
 if os.path.exists('baltimore_db.sqlite'):
     os.remove('baltimore_db.sqlite')
@@ -23,6 +24,12 @@ path = '..' + os.sep + 'data' + os.sep
 
 zipcodes = []
 
+def get_zipcode_from_address(address):
+    geolocator = Nominatim(user_agent="bccv")
+    location = geolocator.geocode(address)
+    zipcode = location.address.split(",")[-2].strip()
+    return zipcode
+
 for csv in os.listdir(path):
     if "MD_Covid" in csv:
         if "2020" in csv: year = "2020"
@@ -42,7 +49,7 @@ for csv in os.listdir(path):
                     date = row.month_date
                 except:
                     pass
-            
+
         print(f"{csv} done")
 
 # when loading crime data, check if coor reverese geocoded is in zipcode table; if not, add to zipcode table
