@@ -57,7 +57,7 @@ for csv in os.listdir(PATH):
                     # geocode for long and lat
                     location = geolocator.geocode(f"{zip}, Maryland, USA")
 
-                    params = (str(zip), location.latitude, location.longitude)
+                    params = (zip, location.latitude, location.longitude)
                     cur = conn.cursor()
                     cur.execute('INSERT INTO zipcode (zipcode, lat, long) VALUES(?, ?, ?)', params)
 
@@ -72,7 +72,7 @@ for csv in os.listdir(PATH):
                         case_count = row[date]
 
                         if not math.isnan(case_count):
-                            params = (date[5:], case_count, str(zip))
+                            params = (date[5:], case_count, zip)
                             cur = conn.cursor()
                             cur.execute('INSERT INTO covid_cases (date, total_cases, zipcode) VALUES(?, ?, ?)', params)
                     except:
