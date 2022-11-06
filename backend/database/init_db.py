@@ -4,6 +4,9 @@ import pandas as pd
 import math
 import time
 from geopy.geocoders import Nominatim
+import itertools
+import csv
+import time
 
 if os.path.exists('baltimore_db.sqlite'):
     os.remove('baltimore_db.sqlite')
@@ -18,15 +21,27 @@ conn.commit()
 print("Tables created successfully")
 
 zipcode_lookup = {} # Dictionary containing geocoded address/zipcode pairs
+zipcodes = []
 
-def get_zipcode_from_address(address):
+def check_zipcode_table(zip, geolocator):
+    global zipcodes
+    if zip not in zipcodes:
+        zipcodes.append(zip)
+        # geocode for long and lat
+        location = geolocator.geocode(f"{zip}, Maryland, USA")
+
+        params = (zip, location.latitude, location.longitude)
+        cur = conn.cursor()
+        cur.execute('INSERT OR IGNORE INTO zipcode (zipcode, lat, long) VALUES(?, ?, ?)', params)
+
+def get_zipcode_from_coordinates(address, lat, long, geolocator):
     global zipcode_lookup
     # Check if address was already geocoded to avoid duplicate geocoding
     if address not in zipcode_lookup:
-        geolocator = Nominatim(user_agent="jfeng3@umbc.edu")
-        location = geolocator.geocode(address)
-        zipcode = location.address.split(",")[-2].strip()
+        location = geolocator.reverse(f"{lat}, {long}")
+        zipcode = location.raw['address']['postcode']
         zipcode_lookup[address] = zipcode
+
     return zipcode_lookup[address]
 
 
@@ -40,18 +55,20 @@ def get_zipcode_from_address(address):
 # ^^^ to add any missing zipcodes missed from MD_Covid data
 
 PATH = '..' + os.sep + 'data' + os.sep
-zipcodes = []
 
-print("Loading tables into sql...")
+print("Loading tables into sql...\n")
 for csv in os.listdir(PATH):
+    print(f"Loading {csv}...")
+    start = time.perf_counter()
 
     # load COVID total_cases into db
+
     if "MD_Covid" in csv:
         if "2020" in csv: year = "2020"
         elif "2021" in csv: year = "2021"
         elif "2022" in csv: year = "2022"
 
-        geolocator = Nominatim(user_agent="jfeng3@umbc.edu")
+        geolocator = Nominatim(user_agent="jfeng3@umbc.edu", timeout = 60)
 
         table = pd.read_csv(PATH + csv)
         for i, row in table.iterrows():
@@ -59,17 +76,10 @@ for csv in os.listdir(PATH):
             zip = int(row.ZIP_CODE)
             if 21201 <= zip and zip <= 21298:
                 # create row in zipcode table if it doesnt exist
-                if zip not in zipcodes:
-                    zipcodes.append(zip)
-                    # geocode for long and lat
-                    location = geolocator.geocode(f"{zip}, Maryland, USA")
-
-                    params = (zip, location.latitude, location.longitude)
-                    cur = conn.cursor()
-                    cur.execute('INSERT INTO zipcode (zipcode, lat, long) VALUES(?, ?, ?)', params)
+                check_zipcode_table(zip, geolocator)
 
                 # grab months 01 to 12 for each zipcode
-
+                params = []
                 for i in range(1, 13):
                     if i < 10: m = f"0{i}"
                     else: m = i
@@ -79,17 +89,21 @@ for csv in os.listdir(PATH):
                         case_count = row[date]
 
                         if not math.isnan(case_count):
-                            params = (date[5:], case_count, zip)
-                            cur = conn.cursor()
-                            cur.execute('INSERT INTO covid_cases (date, total_cases, zipcode) VALUES(?, ?, ?)', params)
+                            param = (date[5:], case_count, zip)
+                            params.append(param)
                     except:
-                        pass
+                        continue
+                cur = conn.cursor()
+                cur.executemany('INSERT INTO covid_cases (date, total_cases, zipcode) VALUES(?, ?, ?)', params)
 
     # load CRIME_part_1 into db
 
     if "Part_1_Crime" in csv:
-        table = pd.read_csv(PATH + csv, dtype='unicode')
-        # Load values from each row
+        table = pd.read_csv(PATH + csv, low_memory=False)
+        geolocator = Nominatim(user_agent="jfeng3@umbc.edu", timeout = 60)
+
+        # Load values from each row and insert in chunks
+        params = []
         for i, row in table.iterrows():
             longitude = row.X
             latitude = row.Y
@@ -97,19 +111,42 @@ for csv in os.listdir(PATH):
             code = row.CrimeCode
             type = row.Description
             address = row.Location
+
             # Skip the entry if there is no location information
             if not address.strip():
                 continue
-            zipcode = get_zipcode_from_address(address)
+            try:
+                zipcode = get_zipcode_from_coordinates(address, latitude, longitude, geolocator)
+            except:
+                continue
+            check_zipcode_table(zipcode, geolocator)
+
+            param = (longitude, latitude, date, code, type, zipcode)
+            params.append(param)
 
             # Add to database
-            params = (longitude, latitude, date, code, type, zipcode)
-            cur = conn.cursor()
-            cur.execute('INSERT INTO crime (long, lat, date, type_code, type, zipcode) VALUES(?, ?, ?, ?, ?, ?)', params)
+            if i % 1000 == 0:
+                cur = conn.cursor()
+                cur.executemany('INSERT INTO crime (long, lat, date, type_code, type, zipcode) \
+                                 VALUES(?, ?, ?, ?, ?, ?)', params)
+                
+                print(f"crime_part1 batch # {i} inserted")
+                params = []
+        cur = conn.cursor()
+        cur.executemany('INSERT INTO crime (long, lat, date, type_code, type, zipcode) \
+                         VALUES(?, ?, ?, ?, ?, ?)', params)
 
-    print(f"{csv} : done")
+    end = time.perf_counter()
+    print(f"{csv} : Done : Elapsed time: {end - start}\n")
 
 conn.commit()
+
+"""
+cur = conn.cursor()
+cur.execute("SELECT * FROM crime")
+rows = cur.fetchall()
+print(rows)"""
+
 conn.close()
 
 # ----------------------data loaded----------------------
