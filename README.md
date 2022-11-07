@@ -2,7 +2,7 @@
 
 To setup Flask and virtual environment:
 
-### `npm run build-flask`
+### `npm run init-venv`
 
 To install Node.js dependencies when cloning for your local repository:
 
@@ -10,12 +10,17 @@ To install Node.js dependencies when cloning for your local repository:
 
 VOILA, SIMPLE AS THAT :)
 
-# How to run Flask and React:
+If you want to rebuild the database:
+### `npm run init-db`
+Note: it will take approx. 8000 seconds or 2 hours to rebuild the database
 
-Run Flask backend:
+# How to run Flask and React:
+Open two terminals
+
+Run Flask backend in the first:
 ### `npm run start-flask`
 
-Run React frontend:
+Run React frontend in the second:
 ### `npm start`
 
 # REACT APP README
