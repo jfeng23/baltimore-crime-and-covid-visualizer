@@ -3,24 +3,20 @@ import styled from "styled-components";
 
 export const NavHeader = styled.div`
 background: #0D99ED;
-height: 50px;
-text-align: center;
-border: 3px solid #0909FF;
-border-radius: 10px;
-margin: 10px;
+text-align: left;
+padding-left: 20px;
+background-color: #666699;
 color: white;
-font-family: Comic Sans MS;
-font-size: 2em;
+font-family: Verdana;
+font-size: 1.2em;
+padding: 10px;
 `
 
 export const Nav = styled.nav`
-background: #8989FF;
+background: #7575a3;
 height: 85px;
 display: flex;
 justify-content: space-between;
-z-index: 12;
-border-radius: 10px;
-margin: 10px;
 `;
 
 export const NavLink = styled(Link)`
@@ -31,19 +27,13 @@ text-decoration: none;
 padding: 0 3rem;
 height: 100%;
 cursor: pointer;
-font-family: Comic Sans MS;
+font-family: Verdana;
 font-size: 2em;
 `;
 
 export const NavMenu = styled.div`
 display: flex;
-align-items: center;
-margin-right: -24px;
-/* Second Nav */
-margin-right: 24px;
-/* Third Nav */
 width: 100vw;
-white-space: nowrap;
 @media screen and (max-width: 768px) {
 	display: none;
 }
