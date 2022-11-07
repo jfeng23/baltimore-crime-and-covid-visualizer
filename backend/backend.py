@@ -12,42 +12,70 @@ def get_database():
     conn.row_factory = sqlite3.Row
     return conn
 
-def get_covid_cases_from_date(start_date, end_date):
+def get_map_covid_cases_all():
     conn = get_database()
     cursor = conn.cursor()
-    cursor.execute('SELECT zipcode.lat AS lat, zipcode.long AS long, \
-                    total_cases FROM covid_cases JOIN zipcode WHERE \
-                    covid_cases.date BETWEEN ? AND ? AND covid_cases.zipcode \
-                    = zipcode.zipcode',
-                    (start_date, end_date))
-    covid_cases_list = []
-    for i in cursor.fetchall():
-        covid_cases = {}
-        covid_cases["lat"] = i["lat"]
-        covid_cases["long"] = i["long"]
-        covid_cases["total_cases"] = i["total_cases"]
-        covid_cases_list.append(covid_cases)
-    return covid_cases_list
+    cursor.execute('SELECT lat AS lat, long AS long, sum(total_cases) as total_cases \
+                    FROM covid_cases JOIN zipcode \
+                    WHERE covid_cases.zipcode = zipcode.zipcode \
+                    GROUP BY zipcode.zipcode')
 
-def get_covid_cases():
+    covid_list = []
+    for i in cursor.fetchall():
+        cases = {}
+        cases["lat"] = i["lat"]
+        cases["lng"] = i["long"]
+        cases["count"] = i["total_cases"]
+        covid_list.append(cases)
+    return covid_list
+
+def get_map_covid_cases_from_date(start_date, end_date):
     conn = get_database()
     cursor = conn.cursor()
-    cursor.execute('SELECT lat AS lat, long AS long, \
-                    total_cases FROM covid_cases JOIN zipcode WHERE \
-                    covid_cases.zipcode = zipcode.zipcode')
-    covid_cases_list = []
+    cursor.execute('SELECT zipcode.lat AS lat, zipcode.long AS long, sum(total_cases)  as total_cases\
+                    FROM zipcode JOIN covid_cases ON covid_cases.date BETWEEN ? AND ? \
+                    WHERE covid_cases.zipcode = zipcode.zipcode \
+                    GROUP BY zipcode.zipcode', (start_date, end_date))
+
+    covid_list = []
     for i in cursor.fetchall():
-        covid_cases = {}
-        covid_cases["lat"] = i["lat"]
-        covid_cases["long"] = i["long"]
-        covid_cases["total_cases"] = i["total_cases"]
-        covid_cases_list.append(covid_cases)
-    return covid_cases_list
+        cases = {}
+        cases["lat"] = i["lat"]
+        cases["lng"] = i["long"]
+        cases["count"] = i["total_cases"]
+        covid_list.append(cases)
+    return covid_list
 
-@app.route('/api/covid_cases', methods=['GET'])
-def api_get_all_covid_cases():
-    return get_covid_cases()
+def get_map_crime_type(crime_type_code):
+    conn = get_database()
+    cursor = conn.cursor()
+    cursor.execute('SELECT zipcode.lat AS lat, zipcode.long AS long, COUNT(*) AS crime_count \
+                    FROM zipcode JOIN crime ON crime.type_code = ? \
+                    WHERE crime.zipcode = zipcode.zipcode \
+                    GROUP BY zipcode.zipcode', [crime_type_code]) # [] for single parameters
 
-@app.route('/api/covid_cases/<start_date>/<end_date>', methods=['GET'])
-def api_get_covid_cases(start_date, end_date):
-    return get_covid_cases_from_date(start_date, end_date)
+    crime_list = []
+    for i in cursor.fetchall():
+        crime = {}
+        # omit zipcode because heatmap.js doesnt want it
+        crime["lat"] = i["lat"]
+        crime["lng"] = i["long"]
+        crime["count"] = i["crime_count"]
+        crime_list.append(crime)
+    return crime_list
+
+# DEFAULT MAP LOAD
+@app.route('/api/map/covid_cases', methods=['GET'])
+def api_get_map_covid_cases_all():
+    return get_map_covid_cases_all()
+
+# DATE FILTER FOR COVID
+@app.route('/api/map/covid_cases/<start_date>/<end_date>', methods=['GET'])
+def api_get_map_covid_cases_from_date(start_date, end_date):
+    return get_map_covid_cases_from_date(start_date, end_date)
+
+# CRIME_TYPE_CODE FILTER FOR CRIME
+@app.route('/api/map/crime/<crime_type_code>', methods=['GET'])
+def api_get_map_crime_type(crime_type_code):
+    # sum up total crime in each zipcode and return as arr of dicts: [{}, {}, {}, ...]
+    return get_map_crime_type(crime_type_code)
