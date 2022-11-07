@@ -1,12 +1,11 @@
 import React from "react";
-import { SelectorSection, SelectorTitle, SelectorButton, DateInput, DateButton, DateLabel, DateDiv } from "./SelectorElements"
+import { SelectorSection, SelectorTitle, SelectorButton, DateButton, DateDiv, DateInput, DateLabel } from "./SelectorElements"
   
 const Selector = () => {
   return (
     <>
       <SelectorSection>
-        <SelectorTitle>Filters:</SelectorTitle>
-        <SelectorButton>COVID-19</SelectorButton>
+        <SelectorTitle>Select Data Set</SelectorTitle>
         <SelectorButton>Crime</SelectorButton>
         <SelectorButton>Assault</SelectorButton>
         <SelectorButton>Homicide</SelectorButton>
@@ -14,11 +13,12 @@ const Selector = () => {
         <SelectorButton>Theft</SelectorButton>
         <SelectorButton>COVID-19</SelectorButton>
 
+        <br></br>
         <DateDiv>
-          <DateLabel>Start Date:</DateLabel>
-          <DateInput type={'date'}></DateInput>
-          <DateLabel>End Date:</DateLabel>
-          <DateInput type={'date'}></DateInput>
+          <DateLabel>Start Date:</DateLabel><br></br>
+          <DateInput type={'date'} style={{marginBottom: '5px'}}></DateInput><br></br>
+          <DateLabel>End Date:</DateLabel><br></br>
+          <DateInput type={'date'}></DateInput><br></br>
           <DateButton>Submit</DateButton>
         </DateDiv>
 

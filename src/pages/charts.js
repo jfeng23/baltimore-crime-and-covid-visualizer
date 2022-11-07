@@ -5,10 +5,7 @@ const Charts = () => {
 
     const mapStyles = {
     	overflow: "hidden",
-    	height: "100vh",
-		margin: 10,
-		border: "3px solid #8989FF",
-		borderRadius: 10
+    	height: "100vh"
 	};
 
 	const row = {
@@ -28,10 +25,14 @@ const Charts = () => {
 		<div>
 			<div style={row}>
 
-				<div style={bodyFlex}>
-					<div style={mapStyles}></div>
+				<div style={selectorFlex}>
+					<Selector></Selector>
 				</div>
 
+
+				<div style={bodyFlex}>
+					<div id="map" style={mapStyles}></div>
+				</div>
 
 			</div>
 		</div>

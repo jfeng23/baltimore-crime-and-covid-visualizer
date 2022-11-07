@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 export const FooterBar = styled.footer`
-    background: #dfdfdf;
-    font-family: Comic Sans MS;
-    color: grey;
-    text-align: center;
-    font-size: 1em;
-    bottom: 0;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px;
+    background: #7575a3;
+    color: white;
+    font-family: Verdana;
+    text-align: right;
+    font-size: 1.2em;
+    bottom: 95vh;
+    padding: 10px;
 `
