@@ -12,6 +12,7 @@ VOILA, SIMPLE AS THAT :)
 
 If you want to rebuild the database:
 ### `npm run init-db`
+Note: it will take approx. 8000 seconds or 2 hours to rebuild the database
 
 # How to run Flask and React:
 Open two terminals
