@@ -1,7 +1,8 @@
 import React from "react";
 import { SelectorSection, SelectorTitle, SelectorButton, DateButton, DateDiv, DateInput, DateLabel } from "./SelectorElements"
-  
+
 const Selector = () => {
+
   return (
     <>
       <SelectorSection>
@@ -16,9 +17,9 @@ const Selector = () => {
         <br></br>
         <DateDiv>
           <DateLabel>Start Date:</DateLabel><br></br>
-          <DateInput type={'date'} style={{marginBottom: '5px'}}></DateInput><br></br>
+          <DateInput type={'date'} id='start' style={{marginBottom: '5px'}}></DateInput><br></br>
           <DateLabel>End Date:</DateLabel><br></br>
-          <DateInput type={'date'}></DateInput><br></br>
+          <DateInput type={'date'} id='end'></DateInput><br></br>
           <DateButton>Submit</DateButton>
         </DateDiv>
 
@@ -26,5 +27,5 @@ const Selector = () => {
     </>
   );
 };
-  
+
 export default Selector;
