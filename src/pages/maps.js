@@ -51,7 +51,7 @@ const Maps = () => {
 			var cfg = {
 				// radius should be small ONLY if scaleRadius is true (or small radius is intended)
 				// if scaleRadius is false it will be the constant radius used in pixels
-				"radius": .02,
+				"radius": .04,
 				"maxOpacity": 0.5,
 				// scales the radius based on map zoom
 				"scaleRadius": true,
