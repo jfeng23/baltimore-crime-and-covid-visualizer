@@ -25,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "init-venv": "cd .\\backend && python -m venv venv && .\\venv\\Scripts\\activate && pip install -r requirements.txt",
-    "start-flask": "cd .\\backend && .\\venv\\Scripts\\activate && flask run",
+    "start-flask": "cd .\\backend && .\\venv\\Scripts\\activate && py -m flask run --port=80 --no-debugger",
     "init-db": "cd .\\backend && .\\venv\\Scripts\\activate && cd .\\database && python init_db.py",
     "build": "react-scripts build",
     "test": "react-scripts test",
