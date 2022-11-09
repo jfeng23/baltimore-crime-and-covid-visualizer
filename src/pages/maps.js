@@ -110,7 +110,7 @@ const Maps = () => {
 					<div id="map" style={mapStyles}></div>
 				</div>
 
-				<button onClick={dataWithDate}>Temp Button</button>
+				<button onClick={dataWithDate}>Tempo Button</button>
 
 			</div>
 		</div>
