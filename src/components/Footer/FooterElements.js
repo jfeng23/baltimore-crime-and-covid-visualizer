@@ -5,7 +5,7 @@ export const FooterBar = styled.footer`
     color: white;
     font-family: Verdana;
     text-align: right;
-    font-size: 1.2em;
+    font-size: 0.8em;
     bottom: 95vh;
     padding: 10px;
 `

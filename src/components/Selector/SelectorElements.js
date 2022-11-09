@@ -8,7 +8,7 @@ export const SelectorSection = styled.div`
 `;
 
 export const SelectorTitle = styled.label`
-    font-size: 2em;
+    font-size: 1.7em;
     display: block;
     padding: 5px;
     text-align: left;
@@ -25,7 +25,7 @@ export const SelectorButton = styled.button`
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-size:2em;
+	font-size:1.4em;
     margin: 2px;
 	padding:11px 23px;
 	text-decoration:none;
@@ -40,7 +40,7 @@ export const SelectorButton = styled.button`
 `;
 
 export const DateDiv = styled.div`
-    font-size: 2em;
+    font-size: 1.4em;
     display: block;
     color: white;
     padding: 5px;

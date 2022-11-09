@@ -8,7 +8,7 @@ padding-left: 20px;
 background-color: #666699;
 color: white;
 font-family: Verdana;
-font-size: 1.2em;
+font-size: 1em;
 padding: 10px;
 `
 
