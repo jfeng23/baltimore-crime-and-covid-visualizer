@@ -27,14 +27,19 @@ const Maps = () => {
 		flex: '75%'
 	};
 
-	const defParams = {
-		center: [39.268236, -76.609383],
-		zoom: 12.4,
-		zoomControl: false,
-		maxBounds: L.latLngBounds(L.latLng(-150, -240), L.latLng(150, 240)),
-		layers: [MAP_TILE]
-	};
+	// DEFAULT MAP, WITH NO INFO LOAD
 	var map;
+
+	useEffect(() => {
+		const defParams = {
+			center: [39.268236, -76.609383],
+			zoom: 12.4,
+			zoomControl: false,
+			maxBounds: L.latLngBounds(L.latLng(-150, -240), L.latLng(150, 240)),
+			layers: [MAP_TILE]
+		};
+		map = L.map("map", defParams)
+	}, []);
 
 	function makeReq(reqURL)
 	{
@@ -84,12 +89,6 @@ const Maps = () => {
 		});
 	}
 
-	window.onload = function defaultDataFunc() 
-	{
-		map = L.map("map", defParams)
-		makeReq("http://localhost:80/api/map/covid_cases");
-	}
-
 	function dataWithDate()
 	{
 		var startDate = document.getElementById("start").value;
@@ -110,7 +109,7 @@ const Maps = () => {
 					<div id="map" style={mapStyles}></div>
 				</div>
 
-				<button onClick={dataWithDate}>Tempo Button</button>
+				<button onClick={dataWithDate}>Temp Button</button>
 
 			</div>
 		</div>
