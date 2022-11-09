@@ -7,12 +7,12 @@ const Selector = () => {
     <>
       <SelectorSection>
         <SelectorTitle>Select Data Set</SelectorTitle>
-        <SelectorButton>Crime</SelectorButton>
-        <SelectorButton>Assault</SelectorButton>
-        <SelectorButton>Homicide</SelectorButton>
-        <SelectorButton>Armed Robbery</SelectorButton>
-        <SelectorButton>Theft</SelectorButton>
-        <SelectorButton>COVID-19</SelectorButton>
+        <SelectorButton id="crime">Crime</SelectorButton>
+        <SelectorButton id="assault">Assault</SelectorButton>
+        <SelectorButton id="homicide">Homicide</SelectorButton>
+        <SelectorButton id="robbery">Armed Robbery</SelectorButton>
+        <SelectorButton id="theft">Theft</SelectorButton>
+        <SelectorButton id="covid">COVID-19</SelectorButton>
 
         <br></br>
         <DateDiv>

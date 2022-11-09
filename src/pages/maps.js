@@ -30,17 +30,6 @@ const Maps = () => {
 	// DEFAULT MAP, WITH NO INFO LOAD
 	var map;
 
-	useEffect(() => {
-		const defParams = {
-			center: [39.268236, -76.609383],
-			zoom: 12.4,
-			zoomControl: false,
-			maxBounds: L.latLngBounds(L.latLng(-150, -240), L.latLng(150, 240)),
-			layers: [MAP_TILE]
-		};
-		map = L.map("map", defParams)
-	}, []);
-
 	function makeReq(reqURL)
 	{
 		var defData;
@@ -56,7 +45,7 @@ const Maps = () => {
 			var cfg = {
 				// radius should be small ONLY if scaleRadius is true (or small radius is intended)
 				// if scaleRadius is false it will be the constant radius used in pixels
-				"radius": .04,
+				"radius": .02,
 				"maxOpacity": 0.5,
 				// scales the radius based on map zoom
 				"scaleRadius": true,
@@ -89,13 +78,31 @@ const Maps = () => {
 		});
 	}
 
-	function dataWithDate()
+	function covidDataWithDate()
 	{
 		var startDate = document.getElementById("start").value;
 		var endDate = document.getElementById("end").value;
 		
+		console.log(startDate);
+		console.log(endDate);
+
 		makeReq("http://localhost:80/api/map/covid_cases/" + startDate + "/" + endDate);
 	}
+
+	useEffect(() => {
+		const defParams = {
+			center: [39.268236, -76.609383],
+			zoom: 12.4,
+			zoomControl: false,
+			maxBounds: L.latLngBounds(L.latLng(-150, -240), L.latLng(150, 240)),
+			layers: [MAP_TILE]
+		};
+		map = L.map("map", defParams)
+
+		// set button onclick event
+		document.getElementById("covid").onclick = covidDataWithDate;
+
+	}, []);
 
 	return (
 		<div>
@@ -108,8 +115,6 @@ const Maps = () => {
 				<div style={bodyFlex}>
 					<div id="map" style={mapStyles}></div>
 				</div>
-
-				<button onClick={dataWithDate}>Temp Button</button>
 
 			</div>
 		</div>
