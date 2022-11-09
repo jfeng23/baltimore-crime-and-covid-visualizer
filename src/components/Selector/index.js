@@ -7,12 +7,17 @@ const Selector = () => {
     <>
       <SelectorSection>
         <SelectorTitle>Select Data Set</SelectorTitle>
-        <SelectorButton id="crime">Crime</SelectorButton>
-        <SelectorButton id="assault">Assault</SelectorButton>
-        <SelectorButton id="homicide">Homicide</SelectorButton>
-        <SelectorButton id="robbery">Armed Robbery</SelectorButton>
-        <SelectorButton id="theft">Theft</SelectorButton>
         <SelectorButton id="covid">COVID-19</SelectorButton>
+        <SelectorButton id="commonAssault">Common Assault</SelectorButton>
+        <SelectorButton id="larceny">Larceny</SelectorButton>
+        <SelectorButton id="homicide">Homicide</SelectorButton>
+        <SelectorButton id="burglary">Burglary</SelectorButton>
+        <SelectorButton id="rape">Rape</SelectorButton>
+        <SelectorButton id="autoTheft">Auto Theft</SelectorButton>
+        <SelectorButton id="shooting">Shooting</SelectorButton>
+        <SelectorButton id="aggAssault">Aggrevated Assault</SelectorButton>
+        <SelectorButton id="autoLarceny">Auto Larceny</SelectorButton>
+        <SelectorButton id="carJacking">Car Jacking</SelectorButton>
 
         <br></br>
         <DateDiv>
@@ -20,7 +25,6 @@ const Selector = () => {
           <DateInput type={'date'} id='start' style={{marginBottom: '5px'}}></DateInput><br></br>
           <DateLabel>End Date:</DateLabel><br></br>
           <DateInput type={'date'} id='end'></DateInput><br></br>
-          <DateButton>Submit</DateButton>
         </DateDiv>
 
       </SelectorSection>

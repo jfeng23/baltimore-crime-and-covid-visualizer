@@ -38,7 +38,7 @@ const Maps = () => {
 			defData = response.data;
 			
 			var testData = {
-				max: 10000,
+				max: 100000,
 				data: defData
 			};
 			
@@ -86,7 +86,61 @@ const Maps = () => {
 		console.log(startDate);
 		console.log(endDate);
 
-		makeReq("http://localhost:80/api/map/covid_cases/" + startDate + "/" + endDate);
+		if (startDate === '' && endDate === ''){
+			makeReq("http://localhost:80/api/map/covid_cases");
+		} else {
+			makeReq("http://localhost:80/api/map/covid_cases/" + startDate + "/" + endDate);
+		}
+	}
+
+	function commonAssaultFunc()
+	{
+		makeReq("http://localhost:80/api/map/crime/4E");
+	}
+
+	function larcenyFunc()
+	{
+		makeReq("http://localhost:80/api/map/crime/6C");
+	}
+
+	function homicideFunc()
+	{
+		makeReq("http://localhost:80/api/map/crime/1A");
+	}
+
+	function burglaryFunc()
+	{
+		makeReq("http://localhost:80/api/map/crime/5D");
+	}
+
+	function rapeFunc()
+	{
+		makeReq("http://localhost:80/api/map/crime/2A");
+	}
+
+	function autoTheftFunc()
+	{
+		makeReq("http://localhost:80/api/map/crime/7A");
+	}
+
+	function shootingFunc()
+	{
+		makeReq("http://localhost:80/api/map/crime/9S");
+	}
+
+	function aggAssaultFunc()
+	{
+		makeReq("http://localhost:80/api/map/crime/4C");
+	}
+
+	function autoLarcenyFunc()
+	{
+		makeReq("http://localhost:80/api/map/crime/6D");
+	}
+
+	function carJackingFunc()
+	{
+		makeReq("http://localhost:80/api/map/crime/3AJF");
 	}
 
 	useEffect(() => {
@@ -101,7 +155,16 @@ const Maps = () => {
 
 		// set button onclick event
 		document.getElementById("covid").onclick = covidDataWithDate;
-
+		document.getElementById("commonAssault").onclick = commonAssaultFunc; // 4E
+		document.getElementById("larceny").onclick = larcenyFunc; // 6C
+		document.getElementById("homicide").onclick = homicideFunc; // 1A
+		document.getElementById("burglary").onclick = burglaryFunc; // 5D
+		document.getElementById("rape").onclick = rapeFunc; // 2A
+		document.getElementById("autoTheft").onclick = autoTheftFunc; // 7A
+		document.getElementById("shooting").onclick = shootingFunc; // 9S
+		document.getElementById("aggAssault").onclick = aggAssaultFunc; // 4C
+		document.getElementById("autoLarceny").onclick = autoLarcenyFunc; // 6D
+		document.getElementById("carJacking").onclick = carJackingFunc; // 3AJF
 	}, []);
 
 	return (
