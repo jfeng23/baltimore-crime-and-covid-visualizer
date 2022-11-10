@@ -82,7 +82,6 @@ const Maps = () => {
 	{
 		var startDate = document.getElementById("start").value;
 		var endDate = document.getElementById("end").value;
-		
 		console.log(startDate);
 		console.log(endDate);
 
