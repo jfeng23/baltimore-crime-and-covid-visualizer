@@ -82,8 +82,6 @@ const Maps = () => {
 	{
 		var startDate = document.getElementById("start").value;
 		var endDate = document.getElementById("end").value;
-		console.log(startDate);
-		console.log(endDate);
 
 		if (startDate === '' && endDate === ''){
 			makeReq("http://localhost:80/api/map/covid_cases");
@@ -94,52 +92,122 @@ const Maps = () => {
 
 	function commonAssaultFunc()
 	{
-		makeReq("http://localhost:80/api/map/crime/4E");
+		var startDate = document.getElementById("start").value;
+		var endDate = document.getElementById("end").value;
+
+		if (startDate === '' && endDate === ''){
+			makeReq("http://localhost:80/api/map/crime/4E");
+		} else {
+			makeReq("http://localhost:80/api/map/crime/4E/" + startDate + "/" + endDate);
+		}
 	}
 
 	function larcenyFunc()
 	{
-		makeReq("http://localhost:80/api/map/crime/6C");
+		var startDate = document.getElementById("start").value;
+		var endDate = document.getElementById("end").value;
+
+		if (startDate === '' && endDate === ''){
+			makeReq("http://localhost:80/api/map/crime/6C");
+		} else {
+			makeReq("http://localhost:80/api/map/crime/6C/" + startDate + "/" + endDate);
+		}
 	}
 
 	function homicideFunc()
 	{
-		makeReq("http://localhost:80/api/map/crime/1A");
+		var startDate = document.getElementById("start").value;
+		var endDate = document.getElementById("end").value;
+
+		if (startDate === '' && endDate === ''){
+			makeReq("http://localhost:80/api/map/crime/1A");
+		} else {
+			makeReq("http://localhost:80/api/map/crime/1A/" + startDate + "/" + endDate);
+		}
 	}
 
 	function burglaryFunc()
 	{
-		makeReq("http://localhost:80/api/map/crime/5D");
+		var startDate = document.getElementById("start").value;
+		var endDate = document.getElementById("end").value;
+
+		if (startDate === '' && endDate === ''){
+			makeReq("http://localhost:80/api/map/crime/5D");
+		} else {
+			makeReq("http://localhost:80/api/map/crime/5D/" + startDate + "/" + endDate);
+		}
 	}
 
 	function rapeFunc()
 	{
-		makeReq("http://localhost:80/api/map/crime/2A");
+		var startDate = document.getElementById("start").value;
+		var endDate = document.getElementById("end").value;
+
+		if (startDate === '' && endDate === ''){
+			makeReq("http://localhost:80/api/map/crime/2A");
+		} else {
+			makeReq("http://localhost:80/api/map/crime/2A/" + startDate + "/" + endDate);
+		}
 	}
 
 	function autoTheftFunc()
 	{
-		makeReq("http://localhost:80/api/map/crime/7A");
+		var startDate = document.getElementById("start").value;
+		var endDate = document.getElementById("end").value;
+
+		if (startDate === '' && endDate === ''){
+			makeReq("http://localhost:80/api/map/crime/7A");
+		} else {
+			makeReq("http://localhost:80/api/map/crime/7A/" + startDate + "/" + endDate);
+		}
 	}
 
 	function shootingFunc()
 	{
-		makeReq("http://localhost:80/api/map/crime/9S");
+		var startDate = document.getElementById("start").value;
+		var endDate = document.getElementById("end").value;
+
+		if (startDate === '' && endDate === ''){
+			makeReq("http://localhost:80/api/map/crime/9S");
+		} else {
+			makeReq("http://localhost:80/api/map/crime/9S/" + startDate + "/" + endDate);
+		}
 	}
 
 	function aggAssaultFunc()
 	{
-		makeReq("http://localhost:80/api/map/crime/4C");
+		var startDate = document.getElementById("start").value;
+		var endDate = document.getElementById("end").value;
+
+		if (startDate === '' && endDate === ''){
+			makeReq("http://localhost:80/api/map/crime/4C");
+		} else {
+			makeReq("http://localhost:80/api/map/crime/4C/" + startDate + "/" + endDate);
+		}
 	}
 
 	function autoLarcenyFunc()
 	{
-		makeReq("http://localhost:80/api/map/crime/6D");
+		var startDate = document.getElementById("start").value;
+		var endDate = document.getElementById("end").value;
+
+		if (startDate === '' && endDate === ''){
+			makeReq("http://localhost:80/api/map/crime/6D");
+		} else {
+			makeReq("http://localhost:80/api/map/crime/6D/" + startDate + "/" + endDate);
+		}
 	}
 
 	function carJackingFunc()
 	{
-		makeReq("http://localhost:80/api/map/crime/3AJF");
+		var startDate = document.getElementById("start").value;
+		var endDate = document.getElementById("end").value;
+
+		if (startDate === '' && endDate === ''){
+			makeReq("http://localhost:80/api/map/crime/3AJF");
+		} else {
+			makeReq("http://localhost:80/api/map/crime/3AJF/" + startDate + "/" + endDate);
+		}
 	}
 
 	useEffect(() => {

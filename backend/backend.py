@@ -88,4 +88,3 @@ def api_get_map_covid_cases_from_date(start_date, end_date):
 def api_get_map_crime_type(crime_type_code):
     # sum up total crime in each zipcode and return as arr of dicts: [{}, {}, {}, ...]
     return get_map_crime_type(crime_type_code)
-

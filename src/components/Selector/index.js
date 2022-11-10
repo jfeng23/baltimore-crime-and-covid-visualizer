@@ -1,11 +1,20 @@
 import React from "react";
-import { SelectorSection, SelectorTitle, SelectorButton, DateButton, DateDiv, DateInput, DateLabel } from "./SelectorElements"
+import { SelectorSection, SelectorTitle, SelectorButton, DateDiv, DateInput, DateLabel } from "./SelectorElements"
 
 const Selector = () => {
 
   return (
     <>
       <SelectorSection>
+
+        <DateDiv>
+          <DateLabel>Start Date:</DateLabel><br></br>
+          <DateInput type={'date'} id='start' style={{marginBottom: '5px'}}></DateInput><br></br>
+          <DateLabel>End Date:</DateLabel><br></br>
+          <DateInput type={'date'} id='end'></DateInput><br></br>
+        </DateDiv>
+
+        <br></br>
         <SelectorTitle>Select Data Set</SelectorTitle>
         <SelectorButton id="covid">COVID-19</SelectorButton>
         <SelectorButton id="commonAssault">Common Assault</SelectorButton>
@@ -18,14 +27,6 @@ const Selector = () => {
         <SelectorButton id="aggAssault">Aggrevated Assault</SelectorButton>
         <SelectorButton id="autoLarceny">Auto Larceny</SelectorButton>
         <SelectorButton id="carJacking">Car Jacking</SelectorButton>
-
-        <br></br>
-        <DateDiv>
-          <DateLabel>Start Date:</DateLabel><br></br>
-          <DateInput type={'date'} id='start' style={{marginBottom: '5px'}}></DateInput><br></br>
-          <DateLabel>End Date:</DateLabel><br></br>
-          <DateInput type={'date'} id='end'></DateInput><br></br>
-        </DateDiv>
 
       </SelectorSection>
     </>
