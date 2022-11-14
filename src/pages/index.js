@@ -5,7 +5,9 @@ const Home = () => {
 
 	return (
 		<>
-			<img src={UMBCLOGO} alt='UMBC-LOGO' width={'30%'} style={{padding: '17% 10% 17% 10%'}}></img>
+			<div style={{marginLeft: "auto", marginRight: "auto"}}>
+				<img src={UMBCLOGO} alt='UMBC-LOGO' width={'30%'} style={{padding: '17% 35% 17% 35%'}}></img>
+			</div>
 		</>
 	);
 };
