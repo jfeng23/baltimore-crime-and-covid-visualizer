@@ -66,6 +66,35 @@ def get_map_crime_type(crime_type_code):
         crime_list.append(crime)
     return crime_list
 
+def get_map_zipcode_all():
+    conn = get_database()
+    cursor = conn.cursor()
+    cursor.execute('SELECT zipcode, lat, long FROM zipcode')
+
+    zipcodes = []
+    for i in cursor.fetchall():
+        entry = {}
+        entry["zipcode"] = i["zipcode"]
+        entry["lat"] = i["lat"]
+        entry["lng"] = i["long"]
+        zipcodes.append(entry)
+    return zipcodes
+
+def get_map_zipcode_lat_long(zipcode):
+    conn = get_database()
+    cursor = conn.cursor()
+    cursor.execute('SELECT zipcode, lat, long FROM zipcode \
+                    WHERE zipcode.zipcode = ?', [zipcode])
+
+    zipcodes = []
+    for i in cursor.fetchall():
+        entry = {}
+        entry["zipcode"] = i["zipcode"]
+        entry["lat"] = i["lat"]
+        entry["lng"] = i["long"]
+        zipcodes.append(entry)
+    return zipcodes
+
 # DEFAULT MAP LOAD
 @app.route('/api/map/covid_cases', methods=['GET'])
 def api_get_map_covid_cases_all():
@@ -88,3 +117,13 @@ def api_get_map_covid_cases_from_date(start_date, end_date):
 def api_get_map_crime_type(crime_type_code):
     # sum up total crime in each zipcode and return as arr of dicts: [{}, {}, {}, ...]
     return get_map_crime_type(crime_type_code)
+
+# GET ALL ZIPCODES
+@app.route('/api/map/zipcode', methods=['GET'])
+def api_map_get_zipcode_all():
+    return get_map_zipcode_all()
+
+# ZIPCODE LOOKUP
+@app.route('/api/map/zipcode/<zipcode>', methods=['GET'])
+def api_get_map_zipcode_lat_long(zipcode):
+    return get_map_zipcode_lat_long(zipcode)

@@ -57,17 +57,17 @@ const Charts = () => {
 
 	return (
 	<div style={{ width: 650, textAlign: "center" }}>
-		<h2 style={{ fontFamily: "monospace" }}>
+		<h2 style={{ fontFamily: "verdana" }}>
 			Crime Code Pie Chart
       	</h2>
 		<Pie data={CrimePieChartData} width={50} height={50} />
 
-		<h2 style={{ fontFamily: "monospace" }}>
+		<h2 style={{ fontFamily: "verdana" }}>
 			Covid Cases Over Time
       	</h2>
 		<Line data={LineChartData} width={50} height={50} />
 
-		<h2 style={{ fontFamily: "monospace" }}>
+		<h2 style={{ fontFamily: "verdana" }}>
 			Crimes By Location
       	</h2>
 		<Bar data={BarChartData} width={50} height={50} />
