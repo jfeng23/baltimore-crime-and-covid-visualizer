@@ -3,6 +3,7 @@ import axios from "axios";
 import Selector from "../components/Selector";
 import L from "leaflet";
 import HeatmapOverlay from 'leaflet-heatmap';
+import MARKER from "./marker.png"
 
 const Maps = () => {
 
@@ -61,9 +62,10 @@ const Maps = () => {
 			var heatmapLayer = new HeatmapOverlay(cfg);
 			
 			const mapParams = {
-				center: [39.268236, -76.609383],
-				zoom: 12.4,
-				zoomControl: false,
+				center: [39.288236, -76.609383],
+				zoomSnap: 0.1,
+				zoom: 11.8,
+				zoomControl: true,
 				maxBounds: L.latLngBounds(L.latLng(-150, -240), L.latLng(150, 240)),
 				layers: [MAP_TILE, heatmapLayer]
 			};
@@ -73,8 +75,22 @@ const Maps = () => {
 			map = L.map("map", mapParams);
 			heatmapLayer.setData(testData);
 
-			console.log(testData);
+			map.setMaxBounds(map.getBounds());
 
+			//console.log(testData);
+			var markerIcon = L.icon({
+				iconUrl: MARKER,
+				iconSize:     [30, 30],
+				iconAnchor:   [15, 30],
+				popupAnchor:  [0, -30]
+			});
+
+			// ADD MARKERS TO MAP HERE
+			Object.keys(defData).forEach(k => {
+				var marker = L.marker([defData[k].lat, defData[k].lng], {icon: markerIcon, autoPan: false}).addTo(map);
+				marker.bindPopup(String("The count for this ZIP code is " + defData[k].count)).openPopup();
+			});
+			map.closePopup();
 		});
 	}
 
@@ -212,13 +228,15 @@ const Maps = () => {
 
 	useEffect(() => {
 		const defParams = {
-			center: [39.268236, -76.609383],
-			zoom: 12.4,
-			zoomControl: false,
+			center: [39.288236, -76.609383],
+			zoomSnap: 0.1,
+			zoom: 11.8,
+			zoomControl: true,
 			maxBounds: L.latLngBounds(L.latLng(-150, -240), L.latLng(150, 240)),
 			layers: [MAP_TILE]
 		};
 		map = L.map("map", defParams)
+		map.setMaxBounds(map.getBounds());
 
 		// set button onclick event
 		document.getElementById("covid").onclick = covidDataWithDate;
