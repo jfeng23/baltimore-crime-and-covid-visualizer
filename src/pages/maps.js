@@ -15,6 +15,16 @@ const Maps = () => {
     	height: "100vh"
 	};
 
+	const currentViewStyle = {
+		fontSize: "1.8em",
+		fontFamily: "Verdana",
+		display: "block",
+		padding: "10px",
+		textAlign: "center",
+		color: "white",
+		background: "#a3a3c2"
+	}
+
 	const row = {
 		display: 'flex',
 		flexWrap: 'wrap'
@@ -31,7 +41,7 @@ const Maps = () => {
 	// DEFAULT MAP, WITH NO INFO LOAD
 	var map;
 
-	function makeReq(reqURL)
+	function makeReq(reqURL, current)
 	{
 		var defData;
 		axios.get(reqURL)
@@ -77,7 +87,7 @@ const Maps = () => {
 
 			map.setMaxBounds(map.getBounds());
 
-			//console.log(testData);
+			console.log(defData);
 			var markerIcon = L.icon({
 				iconUrl: MARKER,
 				iconSize:     [30, 30],
@@ -88,9 +98,22 @@ const Maps = () => {
 			// ADD MARKERS TO MAP HERE
 			Object.keys(defData).forEach(k => {
 				var marker = L.marker([defData[k].lat, defData[k].lng], {icon: markerIcon, autoPan: false}).addTo(map);
-				marker.bindPopup(String("The count for this ZIP code is " + defData[k].count)).openPopup();
+				marker.bindPopup(String("The count for this " + defData[k].zipcode + " is " + defData[k].count)).openPopup();
 			});
 			map.closePopup();
+
+			var startDate = document.getElementById("start").value;
+			var endDate = document.getElementById("end").value;
+
+			console.log(startDate);
+
+			// set currentView div
+			if (startDate === '' && endDate === ''){
+				document.getElementById("currentView").textContent = "Currently Viewing: All " + current + " Cases In Dataset (DATE TO DATE)";
+			}
+			else{
+				document.getElementById("currentView").textContent = "Currently Viewing: " + current + " Cases From " + startDate + " To " + endDate;
+			}
 		});
 	}
 
@@ -100,9 +123,9 @@ const Maps = () => {
 		var endDate = document.getElementById("end").value;
 
 		if (startDate === '' && endDate === ''){
-			makeReq("http://localhost:80/api/map/covid_cases");
+			makeReq("http://localhost:80/api/map/covid_cases", "COVID-19");
 		} else {
-			makeReq("http://localhost:80/api/map/covid_cases/" + startDate + "/" + endDate);
+			makeReq("http://localhost:80/api/map/covid_cases/" + startDate + "/" + endDate, "COVID-19");
 		}
 	}
 
@@ -112,9 +135,9 @@ const Maps = () => {
 		var endDate = document.getElementById("end").value;
 
 		if (startDate === '' && endDate === ''){
-			makeReq("http://localhost:80/api/map/crime/4E");
+			makeReq("http://localhost:80/api/map/crime/4E", "Common Assault");
 		} else {
-			makeReq("http://localhost:80/api/map/crime/4E/" + startDate + "/" + endDate);
+			makeReq("http://localhost:80/api/map/crime/4E/" + startDate + "/" + endDate, "Common Assault");
 		}
 	}
 
@@ -124,9 +147,9 @@ const Maps = () => {
 		var endDate = document.getElementById("end").value;
 
 		if (startDate === '' && endDate === ''){
-			makeReq("http://localhost:80/api/map/crime/6C");
+			makeReq("http://localhost:80/api/map/crime/6C", "Larceny");
 		} else {
-			makeReq("http://localhost:80/api/map/crime/6C/" + startDate + "/" + endDate);
+			makeReq("http://localhost:80/api/map/crime/6C/" + startDate + "/" + endDate, "Larceny");
 		}
 	}
 
@@ -136,9 +159,9 @@ const Maps = () => {
 		var endDate = document.getElementById("end").value;
 
 		if (startDate === '' && endDate === ''){
-			makeReq("http://localhost:80/api/map/crime/1A");
+			makeReq("http://localhost:80/api/map/crime/1A", "Homicide");
 		} else {
-			makeReq("http://localhost:80/api/map/crime/1A/" + startDate + "/" + endDate);
+			makeReq("http://localhost:80/api/map/crime/1A/" + startDate + "/" + endDate, "Homicide");
 		}
 	}
 
@@ -148,9 +171,9 @@ const Maps = () => {
 		var endDate = document.getElementById("end").value;
 
 		if (startDate === '' && endDate === ''){
-			makeReq("http://localhost:80/api/map/crime/5D");
+			makeReq("http://localhost:80/api/map/crime/5D", "Burglary");
 		} else {
-			makeReq("http://localhost:80/api/map/crime/5D/" + startDate + "/" + endDate);
+			makeReq("http://localhost:80/api/map/crime/5D/" + startDate + "/" + endDate, "Burglary");
 		}
 	}
 
@@ -160,9 +183,9 @@ const Maps = () => {
 		var endDate = document.getElementById("end").value;
 
 		if (startDate === '' && endDate === ''){
-			makeReq("http://localhost:80/api/map/crime/2A");
+			makeReq("http://localhost:80/api/map/crime/2A", "Rape");
 		} else {
-			makeReq("http://localhost:80/api/map/crime/2A/" + startDate + "/" + endDate);
+			makeReq("http://localhost:80/api/map/crime/2A/" + startDate + "/" + endDate, "Rape");
 		}
 	}
 
@@ -172,9 +195,9 @@ const Maps = () => {
 		var endDate = document.getElementById("end").value;
 
 		if (startDate === '' && endDate === ''){
-			makeReq("http://localhost:80/api/map/crime/7A");
+			makeReq("http://localhost:80/api/map/crime/7A", "Auto Theft");
 		} else {
-			makeReq("http://localhost:80/api/map/crime/7A/" + startDate + "/" + endDate);
+			makeReq("http://localhost:80/api/map/crime/7A/" + startDate + "/" + endDate, "Auto Theft");
 		}
 	}
 
@@ -184,9 +207,9 @@ const Maps = () => {
 		var endDate = document.getElementById("end").value;
 
 		if (startDate === '' && endDate === ''){
-			makeReq("http://localhost:80/api/map/crime/9S");
+			makeReq("http://localhost:80/api/map/crime/9S", "Shooting");
 		} else {
-			makeReq("http://localhost:80/api/map/crime/9S/" + startDate + "/" + endDate);
+			makeReq("http://localhost:80/api/map/crime/9S/" + startDate + "/" + endDate, "Shooting");
 		}
 	}
 
@@ -196,9 +219,9 @@ const Maps = () => {
 		var endDate = document.getElementById("end").value;
 
 		if (startDate === '' && endDate === ''){
-			makeReq("http://localhost:80/api/map/crime/4C");
+			makeReq("http://localhost:80/api/map/crime/4C", "Aggrevated Assault");
 		} else {
-			makeReq("http://localhost:80/api/map/crime/4C/" + startDate + "/" + endDate);
+			makeReq("http://localhost:80/api/map/crime/4C/" + startDate + "/" + endDate, "Aggrevated Assault");
 		}
 	}
 
@@ -208,9 +231,9 @@ const Maps = () => {
 		var endDate = document.getElementById("end").value;
 
 		if (startDate === '' && endDate === ''){
-			makeReq("http://localhost:80/api/map/crime/6D");
+			makeReq("http://localhost:80/api/map/crime/6D", "Auto Larceny");
 		} else {
-			makeReq("http://localhost:80/api/map/crime/6D/" + startDate + "/" + endDate);
+			makeReq("http://localhost:80/api/map/crime/6D/" + startDate + "/" + endDate, "Auto Larceny");
 		}
 	}
 
@@ -220,9 +243,9 @@ const Maps = () => {
 		var endDate = document.getElementById("end").value;
 
 		if (startDate === '' && endDate === ''){
-			makeReq("http://localhost:80/api/map/crime/3AJF");
+			makeReq("http://localhost:80/api/map/crime/3AJF", "Car Jacking");
 		} else {
-			makeReq("http://localhost:80/api/map/crime/3AJF/" + startDate + "/" + endDate);
+			makeReq("http://localhost:80/api/map/crime/3AJF/" + startDate + "/" + endDate, "Car Jacking");
 		}
 	}
 
@@ -261,6 +284,7 @@ const Maps = () => {
 				</div>
 
 				<div style={bodyFlex}>
+					<div id="currentView" style={currentViewStyle}></div>
 					<div id="map" style={mapStyles}></div>
 				</div>
 
