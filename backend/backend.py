@@ -3,6 +3,7 @@ from flask_cors import CORS
 import os
 import sys
 import sqlite3
+from datetime import datetime
 app = Flask(__name__)
 cors = CORS(app)
 
@@ -51,6 +52,21 @@ def get_map_covid_cases_from_date(start_date, end_date):
         cases["count"] = i["total_cases"]
         covid_list.append(cases)
     return covid_list
+
+def get_chart_covid_cases_by_date():
+    conn = get_database()
+    cursor = conn.cursor()
+    cursor.execute('SELECT covid_cases.date AS date, SUM(total_cases) \
+                    AS total_cases FROM zipcode JOIN covid_cases \
+                    WHERE covid_cases.zipcode = zipcode.zipcode \
+                    GROUP BY covid_cases.date')
+
+    covid_list = {}
+    for i in cursor.fetchall():
+        key = i["date"]
+        val = i["total_cases"]
+        covid_list[key] = val
+    return sorted(covid_list.items(), key = lambda x:datetime.strptime(x[0], '%d_%m_%Y'), reverse=False)
 
 def get_map_crime_type(crime_type_code):
     conn = get_database()
@@ -139,6 +155,10 @@ def api_get_map_covid_cases_from_date(start_date, end_date):
         return get_map_covid_cases_from_date(s_date, e_date)
 
     return get_map_covid_cases_from_date(start_date, end_date)
+
+@app.route('/api/chart/covid_cases/', methods=['GET'])
+def api_get_chart_covid_cases_by_date():
+    return get_chart_covid_cases_by_date()
 
 # CRIME_TYPE_CODE FILTER FOR CRIME
 @app.route('/api/map/crime/<crime_type_code>', methods=['GET'])
