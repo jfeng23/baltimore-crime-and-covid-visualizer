@@ -56,39 +56,6 @@ def get_map_covid_cases_from_date(start_date, end_date):
         covid_list.append(cases)
     return covid_list
 
-# CHART/COVID by Date
-
-def get_chart_covid_cases_by_date():
-    conn = get_database()
-    cursor = conn.cursor()
-    cursor.execute('SELECT covid_cases.date AS date, AVG(total_cases) \
-                    AS total_cases FROM zipcode JOIN covid_cases \
-                    WHERE covid_cases.zipcode = zipcode.zipcode \
-                    GROUP BY covid_cases.date')
-
-    covid_list = {}
-    for i in cursor.fetchall():
-        key = i["date"][:10]
-        val = i["total_cases"]
-        covid_list[key] = val
-    return covid_list
-
-def get_chart_covid_cases_by_date_from_date(start_date, end_date):
-    conn = get_database()
-    cursor = conn.cursor()
-    cursor.execute('SELECT covid_cases.date AS date, AVG(total_cases) \
-                    AS total_cases FROM zipcode JOIN covid_cases \
-                    ON covid_cases.date BETWEEN ? AND ? \
-                    WHERE covid_cases.zipcode = zipcode.zipcode \
-                    GROUP BY covid_cases.date', (start_date, end_date))
-
-    covid_list = {}
-    for i in cursor.fetchall():
-        key = i["date"][:10]
-        val = i["total_cases"]
-        covid_list[key] = val
-    return covid_list
-
 # MAP/CRIME
 
 def get_map_crime_type(crime_type_code):
@@ -131,7 +98,40 @@ def get_map_crime_type_from_date(crime_type_code, start_date, end_date):
         crime_list.append(crime)
     return crime_list
 
-# CHART/CRIME Count by Type
+# CHART/COVID by Date
+
+def get_chart_covid_cases_by_date():
+    conn = get_database()
+    cursor = conn.cursor()
+    cursor.execute('SELECT covid_cases.date AS date, AVG(total_cases) \
+                    AS total_cases FROM zipcode JOIN covid_cases \
+                    WHERE covid_cases.zipcode = zipcode.zipcode \
+                    GROUP BY covid_cases.date')
+
+    covid_list = {}
+    for i in cursor.fetchall():
+        key = i["date"][:10]
+        val = i["total_cases"]
+        covid_list[key] = val
+    return covid_list
+
+def get_chart_covid_cases_by_date_from_date(start_date, end_date):
+    conn = get_database()
+    cursor = conn.cursor()
+    cursor.execute('SELECT covid_cases.date AS date, AVG(total_cases) \
+                    AS total_cases FROM zipcode JOIN covid_cases \
+                    ON covid_cases.date BETWEEN ? AND ? \
+                    WHERE covid_cases.zipcode = zipcode.zipcode \
+                    GROUP BY covid_cases.date', (start_date, end_date))
+
+    covid_list = {}
+    for i in cursor.fetchall():
+        key = i["date"][:10]
+        val = i["total_cases"]
+        covid_list[key] = val
+    return covid_list
+
+# CHART/CRIME Count by ALL or START-END DATE
 
 def get_chart_crime_count_by_type():
     conn = get_database()
@@ -162,7 +162,7 @@ def get_chart_crime_count_by_type_from_date(start_date, end_date):
         crime_list.append(crime)
     return crime_list
 
-# CHART/CRIME Count by Date OR Month
+# CHART/CRIME Count by CRIME CODE AND/OR START-END Date
 
 def get_chart_crime_type_count_by_date(crime_type_code):
     conn = get_database()
