@@ -134,7 +134,7 @@ def get_map_crime_type_from_date(crime_type_code, start_date, end_date):
 
 # CHART/CRIME
 
-def get_chart_crime_type_count():
+def get_chart_crime_count_by_type():
     conn = get_database()
     cursor = conn.cursor()
     cursor.execute('SELECT crime.type_code AS type_code, COUNT(*) AS crime_count \
@@ -229,6 +229,10 @@ def api_get_map_crime_type_from_date(crime_type_code, start_date, end_date):
         return get_map_crime_type_from_date(crime_type_code, s_date, e_date)
 
     return get_map_crime_type_from_date(crime_type_code, start_date, end_date)
+
+@app.route('/api/chart/crime/', methods=['GET'])
+def api_get_chart_crime_count_by_type():
+    return get_chart_crime_count_by_type()
 
 # GET ALL ZIPCODES
 @app.route('/api/map/zipcode', methods=['GET'])
