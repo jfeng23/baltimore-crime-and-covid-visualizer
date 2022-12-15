@@ -68,6 +68,22 @@ def get_chart_covid_cases_by_date():
         covid_list[key] = val
     return sorted(covid_list.items(), key = lambda x:datetime.strptime(x[0], '%d_%m_%Y'), reverse=False)
 
+def get_chart_covid_cases_by_date_from_date(start_date, end_date):
+    conn = get_database()
+    cursor = conn.cursor()
+    cursor.execute('SELECT covid_cases.date AS date, AVG(total_cases) \
+                    AS total_cases FROM zipcode JOIN covid_cases \
+                    ON covid_cases.date BETWEEN ? AND ? \
+                    WHERE covid_cases.zipcode = zipcode.zipcode \
+                    GROUP BY covid_cases.date', (start_date, end_date))
+
+    covid_list = {}
+    for i in cursor.fetchall():
+        key = i["date"]
+        val = i["total_cases"]
+        covid_list[key] = val
+    return sorted(covid_list.items(), key = lambda x:datetime.strptime(x[0], '%d_%m_%Y'), reverse=False)
+
 def get_map_crime_type(crime_type_code):
     conn = get_database()
     cursor = conn.cursor()
@@ -88,13 +104,14 @@ def get_map_crime_type(crime_type_code):
     return crime_list
 
 #TODO: MAKE THIS WORK
-'''
+
 def get_map_crime_type_from_date(crime_type_code, start_date, end_date):
     conn = get_database()
     cursor = conn.cursor()
     cursor.execute('SELECT zipcode.zipcode, zipcode.lat AS lat, \
                     zipcode.long AS long, COUNT(*) AS crime_count FROM zipcode \
                     JOIN crime ON crime.type_code = ? \
+                    AND crime.date BETWEEN ? AND ? \
                     WHERE crime.zipcode = zipcode.zipcode \
                     GROUP BY zipcode.zipcode',
                     (crime_type_code, start_date, end_date))
@@ -108,7 +125,7 @@ def get_map_crime_type_from_date(crime_type_code, start_date, end_date):
         crime["count"] = i["crime_count"]
         crime_list.append(crime)
     return crime_list
-'''
+
 
 def get_map_zipcode_all():
     conn = get_database()
@@ -160,21 +177,34 @@ def api_get_map_covid_cases_from_date(start_date, end_date):
 def api_get_chart_covid_cases_by_date():
     return get_chart_covid_cases_by_date()
 
+@app.route('/api/chart/covid_cases/<start_date>/<end_date>', methods=['GET'])
+def api_get_chart_covid_cases_by_date_from_date(start_date, end_date):
+
+    if "-" in start_date:
+        s_date = f"{start_date[5:7]}_{start_date[8:]}_{start_date[:4]}"
+        e_date = f"{end_date[5:7]}_{end_date[8:]}_{end_date[:4]}"
+        return get_chart_covid_cases_by_date_from_date(s_date, e_date)
+
+    return get_chart_covid_cases_by_date_from_date(start_date, end_date)
+
 # CRIME_TYPE_CODE FILTER FOR CRIME
 @app.route('/api/map/crime/<crime_type_code>', methods=['GET'])
 def api_get_map_crime_type(crime_type_code):
     # sum up total crime in each zipcode and return as arr of dicts: [{}, {}, {}, ...]
     return get_map_crime_type(crime_type_code)
-'''
+
 # CRIME_TYPE_CODE AND DATE FILTER FOR CRIME
 @app.route('/api/map/crime/<crime_type_code>/<start_date>/<end_date>', methods=['GET'])
 def api_get_map_crime_type_from_date(crime_type_code, start_date, end_date):
+    
+    # yyyy-mm-dd to yyyy/mm/dd xx:xx:xx+xx
     if "-" in start_date:
-        s_date = f"{start_date[5:7]}_{start_date[8:]}_{start_date[:4]}"
-        e_date = f"{end_date[5:7]}_{end_date[8:]}_{end_date[:4]}"
+        s_date = f"{start_date[:4]}/{start_date[5:7]}/{start_date[8:]} 00:00:00+00"
+        e_date = f"{end_date[:4]}/{end_date[5:7]}/{end_date[8:]} 00:00:00+00"
         return get_map_crime_type_from_date(crime_type_code, s_date, e_date)
+        
     return get_map_crime_type_from_date(crime_type_code, start_date, end_date)
-'''
+
 # GET ALL ZIPCODES
 @app.route('/api/map/zipcode', methods=['GET'])
 def api_map_get_zipcode_all():
