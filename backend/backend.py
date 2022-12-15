@@ -3,17 +3,20 @@ from flask_cors import CORS
 import os
 import sys
 import sqlite3
-from datetime import datetime
 app = Flask(__name__)
 cors = CORS(app)
 
 if __name__ == "__main__":
     app.run(debug=True)
 
+#-------------------- get functions --------------------
+
 def get_database():
     conn = sqlite3.connect('database' + os.sep + 'baltimore_db.sqlite')
     conn.row_factory = sqlite3.Row
     return conn
+
+# MAP/COVID
 
 def get_map_covid_cases_all():
     conn = get_database()
@@ -53,6 +56,8 @@ def get_map_covid_cases_from_date(start_date, end_date):
         covid_list.append(cases)
     return covid_list
 
+# CHART/COVID
+
 def get_chart_covid_cases_by_date():
     conn = get_database()
     cursor = conn.cursor()
@@ -66,8 +71,9 @@ def get_chart_covid_cases_by_date():
         key = i["date"]
         val = i["total_cases"]
         covid_list[key] = val
-    return sorted(covid_list.items(), key = lambda x:datetime.strptime(x[0], '%d_%m_%Y'), reverse=False)
+    return covid_list
 
+# doesn't work properly because mm_dd_yyyy doesnt filter correctly with BETWEEN op
 def get_chart_covid_cases_by_date_from_date(start_date, end_date):
     conn = get_database()
     cursor = conn.cursor()
@@ -82,7 +88,9 @@ def get_chart_covid_cases_by_date_from_date(start_date, end_date):
         key = i["date"]
         val = i["total_cases"]
         covid_list[key] = val
-    return sorted(covid_list.items(), key = lambda x:datetime.strptime(x[0], '%d_%m_%Y'), reverse=False)
+    return covid_list
+
+# MAP/CRIME
 
 def get_map_crime_type(crime_type_code):
     conn = get_database()
@@ -102,8 +110,6 @@ def get_map_crime_type(crime_type_code):
         crime["count"] = i["crime_count"]
         crime_list.append(crime)
     return crime_list
-
-#TODO: MAKE THIS WORK
 
 def get_map_crime_type_from_date(crime_type_code, start_date, end_date):
     conn = get_database()
@@ -126,6 +132,23 @@ def get_map_crime_type_from_date(crime_type_code, start_date, end_date):
         crime_list.append(crime)
     return crime_list
 
+# CHART/CRIME
+
+def get_chart_crime_type_count():
+    conn = get_database()
+    cursor = conn.cursor()
+    cursor.execute('SELECT crime.type_code AS type_code, COUNT(*) AS crime_count \
+                    FROM crime GROUP BY crime.type_code') # [] for single parameters
+
+    crime_list = []
+    for i in cursor.fetchall():
+        crime = {}
+        crime["type_code"] = i["type_code"]
+        crime["count"] = i["crime_count"]
+        crime_list.append(crime)
+    return crime_list
+
+# MAP/ZIPCODE
 
 def get_map_zipcode_all():
     conn = get_database()
@@ -156,6 +179,8 @@ def get_map_zipcode_lat_long(zipcode):
         zipcodes.append(entry)
     return zipcodes
 
+#-------------------- route functions --------------------
+
 # DEFAULT MAP LOAD
 @app.route('/api/map/covid_cases', methods=['GET'])
 def api_get_map_covid_cases_all():
@@ -167,8 +192,8 @@ def api_get_map_covid_cases_from_date(start_date, end_date):
 
     # format param dates from yyyy-mm-dd to mm_dd_yyyy
     if "-" in start_date:
-        s_date = f"{start_date[5:7]}_{start_date[8:]}_{start_date[:4]}"
-        e_date = f"{end_date[5:7]}_{end_date[8:]}_{end_date[:4]}"
+        s_date = f"{start_date[:4]}/{start_date[5:7]}/{start_date[8:]} 00:00:00+00"
+        e_date = f"{end_date[:4]}/{end_date[5:7]}/{end_date[8:]} 00:00:00+00"
         return get_map_covid_cases_from_date(s_date, e_date)
 
     return get_map_covid_cases_from_date(start_date, end_date)
@@ -181,8 +206,8 @@ def api_get_chart_covid_cases_by_date():
 def api_get_chart_covid_cases_by_date_from_date(start_date, end_date):
 
     if "-" in start_date:
-        s_date = f"{start_date[5:7]}_{start_date[8:]}_{start_date[:4]}"
-        e_date = f"{end_date[5:7]}_{end_date[8:]}_{end_date[:4]}"
+        s_date = f"{start_date[:4]}/{start_date[5:7]}/{start_date[8:]} 00:00:00+00"
+        e_date = f"{end_date[:4]}/{end_date[5:7]}/{end_date[8:]} 00:00:00+00"
         return get_chart_covid_cases_by_date_from_date(s_date, e_date)
 
     return get_chart_covid_cases_by_date_from_date(start_date, end_date)
@@ -202,7 +227,7 @@ def api_get_map_crime_type_from_date(crime_type_code, start_date, end_date):
         s_date = f"{start_date[:4]}/{start_date[5:7]}/{start_date[8:]} 00:00:00+00"
         e_date = f"{end_date[:4]}/{end_date[5:7]}/{end_date[8:]} 00:00:00+00"
         return get_map_crime_type_from_date(crime_type_code, s_date, e_date)
-        
+
     return get_map_crime_type_from_date(crime_type_code, start_date, end_date)
 
 # GET ALL ZIPCODES
