@@ -19,7 +19,7 @@ def get_map_covid_cases_all():
     conn = get_database()
     cursor = conn.cursor()
     cursor.execute('SELECT zipcode.zipcode, lat AS lat, long AS long, \
-                    SUM(total_cases) AS total_cases FROM covid_cases \
+                    AVG(total_cases) AS total_cases FROM covid_cases \
                     JOIN zipcode WHERE covid_cases.zipcode = zipcode.zipcode \
                     GROUP BY zipcode.zipcode')
 
@@ -37,7 +37,7 @@ def get_map_covid_cases_from_date(start_date, end_date):
     conn = get_database()
     cursor = conn.cursor()
     cursor.execute('SELECT zipcode.zipcode, zipcode.lat AS lat, \
-                    zipcode.long AS long, SUM(total_cases) \
+                    zipcode.long AS long, AVG(total_cases) \
                     AS total_cases FROM zipcode JOIN covid_cases \
                     ON covid_cases.date BETWEEN ? AND ? \
                     WHERE covid_cases.zipcode = zipcode.zipcode \
@@ -56,7 +56,7 @@ def get_map_covid_cases_from_date(start_date, end_date):
 def get_chart_covid_cases_by_date():
     conn = get_database()
     cursor = conn.cursor()
-    cursor.execute('SELECT covid_cases.date AS date, SUM(total_cases) \
+    cursor.execute('SELECT covid_cases.date AS date, AVG(total_cases) \
                     AS total_cases FROM zipcode JOIN covid_cases \
                     WHERE covid_cases.zipcode = zipcode.zipcode \
                     GROUP BY covid_cases.date')
