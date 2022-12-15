@@ -148,6 +148,21 @@ def get_chart_crime_count_by_type():
         crime_list.append(crime)
     return crime_list
 
+def get_chart_crime_count_by_type_from_date(start_date, end_date):
+    conn = get_database()
+    cursor = conn.cursor()
+    cursor.execute('SELECT crime.type_code AS type_code, COUNT(*) AS crime_count \
+                    FROM crime WHERE crime.date BETWEEN ? AND ? \
+                    GROUP BY crime.type_code', (start_date, end_date)) # [] for single parameters
+
+    crime_list = []
+    for i in cursor.fetchall():
+        crime = {}
+        crime["type_code"] = i["type_code"]
+        crime["count"] = i["crime_count"]
+        crime_list.append(crime)
+    return crime_list
+
 # MAP/ZIPCODE
 
 def get_map_zipcode_all():
@@ -233,6 +248,14 @@ def api_get_map_crime_type_from_date(crime_type_code, start_date, end_date):
 @app.route('/api/chart/crime/', methods=['GET'])
 def api_get_chart_crime_count_by_type():
     return get_chart_crime_count_by_type()
+
+@app.route('/api/chart/crime/<start_date>/<end_date>', methods=['GET'])
+def api_get_chart_crime_count_by_type_from_date(start_date, end_date):
+    if "-" in start_date:
+        s_date = f"{start_date[:4]}/{start_date[5:7]}/{start_date[8:]} 00:00:00+00"
+        e_date = f"{end_date[:4]}/{end_date[5:7]}/{end_date[8:]} 00:00:00+00"
+        return get_chart_crime_count_by_type_from_date(s_date, e_date)
+    return get_chart_crime_count_by_type_from_date()
 
 # GET ALL ZIPCODES
 @app.route('/api/map/zipcode', methods=['GET'])
