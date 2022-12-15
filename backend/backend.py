@@ -56,7 +56,7 @@ def get_map_covid_cases_from_date(start_date, end_date):
         covid_list.append(cases)
     return covid_list
 
-# CHART/COVID
+# CHART/COVID by Date
 
 def get_chart_covid_cases_by_date():
     conn = get_database()
@@ -68,12 +68,11 @@ def get_chart_covid_cases_by_date():
 
     covid_list = {}
     for i in cursor.fetchall():
-        key = i["date"]
+        key = i["date"][:10]
         val = i["total_cases"]
         covid_list[key] = val
     return covid_list
 
-# doesn't work properly because mm_dd_yyyy doesnt filter correctly with BETWEEN op
 def get_chart_covid_cases_by_date_from_date(start_date, end_date):
     conn = get_database()
     cursor = conn.cursor()
@@ -85,7 +84,7 @@ def get_chart_covid_cases_by_date_from_date(start_date, end_date):
 
     covid_list = {}
     for i in cursor.fetchall():
-        key = i["date"]
+        key = i["date"][:10]
         val = i["total_cases"]
         covid_list[key] = val
     return covid_list
