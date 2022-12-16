@@ -73,7 +73,7 @@ export default function CrimeSpecific() {
                     labels: crimeDates,
                     datasets: [
                         {
-                            label: "Crime counts for " + crimeCodes[dates.crime_code] + " Per month",
+                            label: "Crime counts for [" + crimeCodes[dates.crime_code] + "] Per month",
                             data: crimeCount,
                             borderColor: "rgb(53, 162, 235)",
                             backgroundColor: "rgb(164, 90, 82)",
@@ -85,7 +85,7 @@ export default function CrimeSpecific() {
                         x: {
                             title: {
                                 display: true,
-                                text: 'Dates',
+                                text: 'Dates (Monthly)',
                                 font: {
                                     size: 20
                                 }
@@ -107,6 +107,11 @@ export default function CrimeSpecific() {
                     plugins: {
                         legend: {
                             position: "top",
+                            labels: {
+                                font: {
+                                    size: 20
+                                }
+                            }
                         },
                         title: {
                             display: true

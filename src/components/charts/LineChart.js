@@ -65,7 +65,7 @@ export default function LineChart() {
                         x: {
                             title: {
                                 display: true,
-                                text: 'Dates',
+                                text: 'Dates (Monthly)',
                                 font: {
                                     size: 20
                                 }
@@ -86,8 +86,13 @@ export default function LineChart() {
                     aspectRatio: 1,
                     responsive: false,
                     plugins: {
-                        Legend: {
+                        legend: {
                             position: "top",
+                            labels: {
+                                font: {
+                                    size: 20
+                                }
+                            }
                         },
                         title: {
                             display: true

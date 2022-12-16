@@ -93,6 +93,11 @@ export default function CrimeCodeAll() {
                     plugins: {
                         legend: {
                             position: "top",
+                            labels: {
+                                font: {
+                                    size: 20
+                                }
+                            }
                         },
                         title: {
                             display: true
