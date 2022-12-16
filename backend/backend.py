@@ -173,9 +173,12 @@ def get_chart_crime_type_count_by_date(crime_type_code):
 
     crime_list = {}
     for i in cursor.fetchall():
-        key = i["date"][:10]
-        val = i["crime_count"]
-        crime_list[key] = val
+        month = i["date"][:7]
+        if month in crime_list:
+            val = crime_list[month] + i["crime_count"]
+        else: 
+            val = i["crime_count"]
+        crime_list[month] = val
     return crime_list
 
 def get_chart_crime_type_count_by_date_from_date(crime_type_code, start_date, end_date):
@@ -187,9 +190,12 @@ def get_chart_crime_type_count_by_date_from_date(crime_type_code, start_date, en
 
     crime_list = {}
     for i in cursor.fetchall():
-        key = i["date"][:10]
-        val = i["crime_count"]
-        crime_list[key] = val
+        month = i["date"][:7]
+        if month in crime_list:
+            val = crime_list[month] + i["crime_count"]
+        else: 
+            val = i["crime_count"]
+        crime_list[month] = val
     return crime_list
 
 # MAP/ZIPCODE
