@@ -30,8 +30,8 @@ export default function LineChart() {
     const [chartOptions, setChartOptions] = useState({});
 
     const [dates, setDates] = useState({
-        start: 0,
-        end: 0
+        start: '',
+        end: ''
     })
 
     var covidDates = []
@@ -39,8 +39,8 @@ export default function LineChart() {
 
     useEffect(() => {
         var reqUrl = 'http://localhost:80/api/chart/covid_cases'
-        if (dates.start !== 0 && dates.end !== 0) {
-            reqUrl = 'http://localhost:80//api/chart/covid_cases/' + dates.start + '/' + dates.end
+        if (dates.start !== '' && dates.end !== '') {
+            reqUrl = 'http://localhost:80/api/chart/covid_cases/' + dates.start + '/' + dates.end
         }
         axios.get(reqUrl)
             .then((res) => {
@@ -89,6 +89,8 @@ export default function LineChart() {
 
     return (
         <div>
+            {dates.start === '' && <h2>Average New Covid Cases by Month</h2>}
+            {dates.start !== '' && <h2>Average New Covid Cases by Month from ({dates.start} to {dates.end})</h2>}
             <button onClick={() => setDates({
                 start: document.getElementById("start").value,
                 end: document.getElementById("end").value
