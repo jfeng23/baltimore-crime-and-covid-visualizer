@@ -108,7 +108,7 @@ export default function CrimeSpecific() {
 
     return (
         <div>
-            {dates.start === '' && <h2>Crime: {crimeCodes[dates.crime_code]} Count by Month</h2>}
+            {dates.start === '' && <h2>Crime Code: {dates.crime_code} - {crimeCodes[dates.crime_code]} Count by Month</h2>}
             {dates.start !== '' && <h2>crime: {crimeCodes[dates.crime_code]} Count by Month ({dates.start} to {dates.end})</h2>}
 
             <label for="crime_code_selection">Choose a Crime Type: </label>
