@@ -81,6 +81,27 @@ export default function CrimeSpecific() {
                     ],
                 });
                 setChartOptions({
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Dates',
+                                font: {
+                                    size: 20
+                                }
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Crime Count',
+                                font: {
+                                    size: 20
+                                }
+                            },
+                            beginAtZero: true,
+                        }
+                    },
                     aspectRatio: 1,
                     responsive: false,
                     plugins: {
@@ -90,13 +111,7 @@ export default function CrimeSpecific() {
                         title: {
                             display: true
                         },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                text: 'Crime Count',
-                                display: true
-                            }
-                        }
+
                     },
                 });
             })

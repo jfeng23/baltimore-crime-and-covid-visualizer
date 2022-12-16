@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const SelectorSection = styled.div`
     padding: 10px;
     background: #a3a3c2;
-    height: 150vh;
+    height: 135vh;
     font-family: Verdana;
 `;
 

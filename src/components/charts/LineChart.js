@@ -61,23 +61,39 @@ export default function LineChart() {
                     ],
                 });
                 setChartOptions({
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Dates',
+                                font: {
+                                    size: 20
+                                }
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Covid Cases',
+                                font: {
+                                    size: 20
+                                }
+                            },
+                            beginAtZero: true,
+
+                        }
+                    },
                     aspectRatio: 1,
                     responsive: false,
                     plugins: {
-                        legend: {
+                        Legend: {
                             position: "top",
                         },
                         title: {
                             display: true
                         },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                text: 'Covid Cases',
-                                display: true
-                            }
-                        }
-                    },
+
+                    }
                 });
             })
             .catch(err => {

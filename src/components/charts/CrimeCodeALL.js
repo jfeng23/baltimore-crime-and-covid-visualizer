@@ -66,6 +66,28 @@ export default function CrimeCodeAll() {
                     ],
                 });
                 setChartOptions({
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Crime Code',
+                                font: {
+                                    size: 20
+                                }
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Crime Count',
+                                font: {
+                                    size: 20
+                                }
+                            },
+                            beginAtZero: true,
+
+                        }
+                    },
                     aspectRatio: 1,
                     responsive: false,
                     plugins: {
@@ -75,13 +97,7 @@ export default function CrimeCodeAll() {
                         title: {
                             display: true
                         },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                text: 'Crime Count',
-                                display: true
-                            }
-                        }
+
                     },
                 });
             })
