@@ -50,7 +50,7 @@ export default function CrimeSpecific() {
 
         var reqUrl = 'http://localhost:80/api/chart/crime/5A'
         if (dates.start !== 0 && dates.end !== 0) {
-            reqUrl = 'http://localhost:80//api/chart/crime/5A' + dates.start + '/' + dates.end
+            reqUrl = 'http://localhost:80//api/chart/crime/5A/' + dates.start + '/' + dates.end
         }
         axios.get(reqUrl)
             .then((res) => {
