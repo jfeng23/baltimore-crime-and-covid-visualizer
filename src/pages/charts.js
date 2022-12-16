@@ -56,9 +56,9 @@ export default function Charts() {
 
 				<div style={selectorFlex}>
 					<Selector>
-						
+
 					</Selector>
-					
+
 				</div>
 
 				<div style={bodyFlex}>

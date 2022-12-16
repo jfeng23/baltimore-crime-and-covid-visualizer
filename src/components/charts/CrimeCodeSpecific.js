@@ -37,6 +37,19 @@ export default function CrimeSpecific() {
         crime_code: '5A'
     })
 
+    var crimeCodes = {
+        "5A": "Common Assault",
+        "6C": "Larceny",
+        "1A": "Homicide",
+        "5D": "Burglary",
+        "2A": "Rape",
+        "7A": "Auto Theft",
+        "9S": "Shooting",
+        "4C": "Aggrevated Assault",
+        "6D": "Auto Larceny",
+        "3AJF": "Car Jacking"
+    }
+
     var crimeDates = [];
     var crimeCount = [];
 
@@ -53,12 +66,14 @@ export default function CrimeSpecific() {
                 crimeDates = Object.keys(res.data)
                 crimeCount = Object.values(res.data)
 
+                console.log(crimeCodes[dates.crime_code])
+
                 setChartData({
                     label: "Crime Type Code",
                     labels: crimeDates,
                     datasets: [
                         {
-                            label: "Crime counts for " + dates.crime_code + " Per month",
+                            label: "Crime counts for " + crimeCodes[dates.crime_code] + " Per month",
                             data: crimeCount,
                             borderColor: "rgb(53, 162, 235)",
                             backgroundColor: "rgb(164, 90, 82)",
@@ -93,8 +108,8 @@ export default function CrimeSpecific() {
 
     return (
         <div>
-            {dates.start === '' && <h2>Crime Code: {dates.crime_code} Count by Month</h2>}
-            {dates.start !== '' && <h2>Crime Code: {dates.crime_code} Count by Month ({dates.start} to {dates.end})</h2>}
+            {dates.start === '' && <h2>Crime: {crimeCodes[dates.crime_code]} Count by Month</h2>}
+            {dates.start !== '' && <h2>crime: {crimeCodes[dates.crime_code]} Count by Month ({dates.start} to {dates.end})</h2>}
 
             <label for="crime_code_selection">Choose a Crime Type: </label>
             <select name="crime_code_selection" id="crime_code_selection">
