@@ -93,8 +93,8 @@ export default function CrimeCodeAll() {
 
     return (
         <div>
-            {dates.start === '' && <h2>Sum of Crime Counts by Type</h2>}
-            {dates.start !== '' && <h2>Sum of Crime Counts by Type ({dates.start} to {dates.end})</h2>}
+            {dates.start === '' && <h2>Sum of Crime Counts by Crime Code</h2>}
+            {dates.start !== '' && <h2>Sum of Crime Counts by Crime Code ({dates.start} to {dates.end})</h2>}
             <button onClick={() => setDates({
                 start: document.getElementById("start").value,
                 end: document.getElementById("end").value
