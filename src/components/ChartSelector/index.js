@@ -3,6 +3,9 @@ import { SelectorSection, DateDiv, DateInput, DateLabel } from "./SelectorElemen
 
 const Selector = () => {
 
+  // selector section for charts
+  // it provides the date input module
+
   return (
     <>
       <SelectorSection>

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+// style options for selector modules
+
 export const SelectorSection = styled.div`
     padding: 10px;
     background: #a3a3c2;

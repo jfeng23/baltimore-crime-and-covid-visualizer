@@ -5,6 +5,8 @@ import CrimeCodeAll from "../components/charts/CrimeCodeALL";
 import Selector from "../components/ChartSelector";
 import CrimeSpecific from "../components/charts/CrimeCodeSpecific";
 
+// imports chart modules
+// !important cant run without it
 import {
 	Chart as ChartJS,
 	CategoryScale,
@@ -26,7 +28,10 @@ ChartJS.register(
 	ArcElement
 );
 
+// main charts function that calls other charts
 export default function Charts() {
+
+	// styling choices
 	const currentViewStyle = {
 		fontSize: "1.8em",
 		fontFamily: "Verdana",
@@ -51,16 +56,13 @@ export default function Charts() {
 	};
 
 	return (
+		// takes care of calling the different chart functions
+		// in seperate files
 		<div>
 			<div style={row}>
-
 				<div style={selectorFlex}>
-					<Selector>
-
-					</Selector>
-
+					<Selector></Selector>
 				</div>
-
 				<div style={bodyFlex}>
 					<div id="currentView" style={currentViewStyle}></div>
 					<div>
