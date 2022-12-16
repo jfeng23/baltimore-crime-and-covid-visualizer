@@ -39,7 +39,6 @@ export default function PieChart() {
     var crimeType = [];
     var crimeCount = [];
 
-    
     /*
     var colors = [];
     for(let i = 0 ;i < 84; i++){
@@ -55,7 +54,7 @@ export default function PieChart() {
     useEffect(() => {
 
         var reqUrl = 'http://localhost:80/api/chart/crime'
-        if (dates.start !== 0 && dates.end !== 0) {
+        if (dates.start !== '' && dates.end !== '') {
             reqUrl = 'http://localhost:80//api/chart/crime/' + dates.start + '/' + dates.end
         }
         axios.get(reqUrl)
@@ -106,6 +105,8 @@ export default function PieChart() {
 
     return (
         <div>
+            {dates.start === '' && <h2>Pie Chart of All Crime Codes</h2>}
+            {dates.start !== '' && <h2>Pie Chart of All Crime Codes from ({dates.start} to {dates.end})</h2>}
             <button onClick={() => setDates({
                 start: document.getElementById("start").value,
                 end: document.getElementById("end").value

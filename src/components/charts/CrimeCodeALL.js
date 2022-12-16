@@ -32,26 +32,18 @@ export default function CrimeCodeAll() {
     const [chartOptions, setChartOptions] = useState({});
 
     const [dates, setDates] = useState({
-        start: 0,
-        end: 0
+        start: '',
+        end: ''
     })
 
     var crimeType = [];
     var crimeCount = [];
 
-    
-    /*
-    var colors = [];
-    for(let i = 0 ;i < 84; i++){
-        colors.push('#'+Math.floor(Math.random()*16777215).toString(16));
-    }
-    */
-
     useEffect(() => {
 
         var reqUrl = 'http://localhost:80/api/chart/crime'
-        if (dates.start !== 0 && dates.end !== 0) {
-            reqUrl = 'http://localhost:80//api/chart/crime/' + dates.start + '/' + dates.end
+        if (dates.start !== '' && dates.end !== '') {
+            reqUrl = 'http://localhost:80/api/chart/crime/' + dates.start + '/' + dates.end
         }
         axios.get(reqUrl)
             .then((res) => {
@@ -74,22 +66,43 @@ export default function CrimeCodeAll() {
                     ],
                 });
                 setChartOptions({
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Crime Code',
+                                font: {
+                                    size: 20
+                                }
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Crime Count',
+                                font: {
+                                    size: 20
+                                }
+                            },
+                            beginAtZero: true,
+
+                        }
+                    },
                     aspectRatio: 1,
                     responsive: false,
                     plugins: {
                         legend: {
                             position: "top",
+                            labels: {
+                                font: {
+                                    size: 20
+                                }
+                            }
                         },
                         title: {
                             display: true
                         },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                text: 'Crime Count',
-                                display: true
-                            }
-                        }
+
                     },
                 });
             })
@@ -101,6 +114,8 @@ export default function CrimeCodeAll() {
 
     return (
         <div>
+            {dates.start === '' && <h2>Sum of Crime Counts by Crime Code</h2>}
+            {dates.start !== '' && <h2>Sum of Crime Counts by Crime Code ({dates.start} to {dates.end})</h2>}
             <button onClick={() => setDates({
                 start: document.getElementById("start").value,
                 end: document.getElementById("end").value

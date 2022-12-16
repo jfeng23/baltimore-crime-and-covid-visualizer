@@ -56,30 +56,17 @@ export default function Charts() {
 
 				<div style={selectorFlex}>
 					<Selector>
-						
+
 					</Selector>
-					
+
 				</div>
 
 				<div style={bodyFlex}>
 					<div id="currentView" style={currentViewStyle}></div>
 					<div>
-						<h2>
-							Average Covid Cases by Month
-						</h2>
 						<LineChart />
-
-						<h2>
-							Crime Code ALL
-						</h2>
 						<CrimeCodeAll />
-
-						<h2>
-							Crime Code Specific
-						</h2>
 						<CrimeSpecific />
-
-
 					</div>
 				</div>
 
