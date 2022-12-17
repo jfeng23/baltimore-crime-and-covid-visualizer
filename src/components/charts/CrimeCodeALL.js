@@ -67,7 +67,7 @@ export default function CrimeCodeAll() {
                     labels: crimeType,
                     datasets: [
                         {
-                            label: "Crime counts for Crime type Codes",
+                            label: "Crime Counts for Crime Type Codes",
                             data: crimeCount,
                             borderColor: "rgb(53, 162, 235)",
                             backgroundColor: "rgb(126, 0, 0)",
@@ -81,7 +81,7 @@ export default function CrimeCodeAll() {
                         x: {
                             title: {
                                 display: true,
-                                text: 'Crime Code',
+                                text: 'Crime Codes',
                                 font: {
                                     family: "verdana",
                                     size: 20

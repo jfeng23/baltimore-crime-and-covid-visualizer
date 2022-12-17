@@ -63,7 +63,7 @@ export default function LineChart() {
                     labels: covidDates,
                     datasets: [
                         {
-                            label: "Average Covid Cases per Month",
+                            label: "Average New Covid Cases per Month",
                             data: covidCases,
                             borderColor: "#000000",
                             backgroundColor: "#00b4d8",
@@ -87,7 +87,7 @@ export default function LineChart() {
                         y: {
                             title: {
                                 display: true,
-                                text: 'Covid Cases',
+                                text: 'Avg Covid Cases',
                                 font: {
                                     family: "verdana",
                                     size: 20

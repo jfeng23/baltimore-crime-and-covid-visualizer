@@ -81,7 +81,7 @@ export default function CrimeSpecific() {
                     labels: crimeDates,
                     datasets: [
                         {
-                            label: "Crime counts for [" + crimeCodes[dates.crime_code] + "] Per month",
+                            label: "Crime Counts for [" + crimeCodes[dates.crime_code] + "] Per month",
                             data: crimeCount,
                             borderColor: "rgb(53, 162, 235)",
                             backgroundColor: "rgb(164, 90, 82)",
