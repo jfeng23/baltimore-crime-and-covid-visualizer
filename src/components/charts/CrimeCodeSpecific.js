@@ -97,6 +97,7 @@ export default function CrimeSpecific() {
                                 display: true,
                                 text: 'Dates (Monthly)',
                                 font: {
+                                    family: "verdana",
                                     size: 20
                                 }
                             }
@@ -106,6 +107,7 @@ export default function CrimeSpecific() {
                                 display: true,
                                 text: 'Crime Count',
                                 font: {
+                                    family: "verdana",
                                     size: 20
                                 }
                             },
@@ -119,6 +121,7 @@ export default function CrimeSpecific() {
                             position: "top",
                             labels: {
                                 font: {
+                                    family: "verdana",
                                     size: 20
                                 }
                             }

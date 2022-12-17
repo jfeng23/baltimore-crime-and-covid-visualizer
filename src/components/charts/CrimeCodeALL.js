@@ -83,6 +83,7 @@ export default function CrimeCodeAll() {
                                 display: true,
                                 text: 'Crime Code',
                                 font: {
+                                    family: "verdana",
                                     size: 20
                                 }
                             }
@@ -92,6 +93,7 @@ export default function CrimeCodeAll() {
                                 display: true,
                                 text: 'Crime Count',
                                 font: {
+                                    family: "verdana",
                                     size: 20
                                 }
                             },
@@ -106,6 +108,7 @@ export default function CrimeCodeAll() {
                             position: "top",
                             labels: {
                                 font: {
+                                    family: "verdana",
                                     size: 20
                                 }
                             }

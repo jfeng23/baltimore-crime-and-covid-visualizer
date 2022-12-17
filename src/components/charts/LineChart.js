@@ -79,6 +79,7 @@ export default function LineChart() {
                                 display: true,
                                 text: 'Dates (Monthly)',
                                 font: {
+                                    family: "verdana",
                                     size: 20
                                 }
                             }
@@ -88,6 +89,7 @@ export default function LineChart() {
                                 display: true,
                                 text: 'Covid Cases',
                                 font: {
+                                    family: "verdana",
                                     size: 20
                                 }
                             },
@@ -102,6 +104,7 @@ export default function LineChart() {
                             position: "top",
                             labels: {
                                 font: {
+                                    family: "verdana",
                                     size: 20
                                 }
                             }
