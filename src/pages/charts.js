@@ -1,6 +1,5 @@
 import React from "react";
 import LineChart from "../components/charts/LineChart";
-import PieChart from "../components/charts/PieChart";
 import CrimeCodeAll from "../components/charts/CrimeCodeALL";
 import Selector from "../components/ChartSelector";
 import CrimeSpecific from "../components/charts/CrimeCodeSpecific";

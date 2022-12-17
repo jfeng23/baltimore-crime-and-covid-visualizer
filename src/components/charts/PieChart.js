@@ -36,8 +36,8 @@ export default function PieChart() {
     const [chartOptions, setChartOptions] = useState({});
 
     const [dates, setDates] = useState({
-        start: 0,
-        end: 0
+        start: '',
+        end: ''
     })
 
     // variables to keep crime type and crime count from api call
