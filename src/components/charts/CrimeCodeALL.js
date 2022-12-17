@@ -127,9 +127,9 @@ export default function CrimeCodeAll() {
     return (
         // takes care of dynamic titles / update button / rendering chart
         <div>
-            {dates.start === '' && <h2 style={{ fontFamily: "verdana" }}>
+            {(dates.start === '' || dates.end === '') && <h2 style={{ fontFamily: "verdana" }}>
                 Sum of Crime Counts by Crime Code</h2>}
-            {dates.start !== '' && <h2 style={{ fontFamily: "verdana" }}>
+            {(dates.start !== '' && dates.end !== '') && <h2 style={{ fontFamily: "verdana" }}>
                 Sum of Crime Counts by Crime Code ({dates.start} to {dates.end})</h2>}
 
             <button onClick={() => setDates({

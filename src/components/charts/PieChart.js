@@ -120,9 +120,9 @@ export default function PieChart() {
     return (
         // takes care of dynamic titles / update button / rendering chart
         <div>
-            {dates.start === '' && <h2 style={{ fontFamily: "verdana" }}>
+            {(dates.start === '' || dates.end === '') && <h2 style={{ fontFamily: "verdana" }}>
                 Pie Chart of All Crime Codes</h2>}
-            {dates.start !== '' && <h2 style={{ fontFamily: "verdana" }}>
+            {(dates.start !== '' && dates.end !== '') && <h2 style={{ fontFamily: "verdana" }}>
                 Pie Chart of All Crime Codes from ({dates.start} to {dates.end})</h2>}
 
             <button onClick={() => setDates({

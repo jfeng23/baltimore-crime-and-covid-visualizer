@@ -37,12 +37,12 @@ export default function CrimeSpecific() {
     const [dates, setDates] = useState({
         start: '',
         end: '',
-        crime_code: '5A'
+        crime_code: '4E'
     })
 
     // dictionary for crime codes for easy lookup
     var crimeCodes = {
-        "5A": "Common Assault",
+        "4E": "Common Assault",
         "6C": "Larceny",
         "1A": "Homicide",
         "5D": "Burglary",
@@ -141,10 +141,10 @@ export default function CrimeSpecific() {
         // takes care of dynamic titles / update button / rendering chart
         // select button for crime type filter
         <div>
-            {dates.start === '' && <h2 style={{ fontFamily: "verdana" }}>
+            {(dates.start === '' || dates.end === '') && <h2 style={{ fontFamily: "verdana" }}>
                 Crime Code: {dates.crime_code} - {crimeCodes[dates.crime_code]} Count by Month</h2>}
-            {dates.start !== '' && <h2 style={{ fontFamily: "verdana" }}>
-                crime: {crimeCodes[dates.crime_code]} Count by Month ({dates.start} to {dates.end})</h2>}
+            {(dates.start !== '' && dates.end !== '') && <h2 style={{ fontFamily: "verdana" }}>
+                Crime Code: {dates.crime_code} - {crimeCodes[dates.crime_code]}  Count by Month ({dates.start} to {dates.end})</h2>}
 
             <label for="crime_code_selection">Choose a Crime Type: </label>
             <select name="crime_code_selection" id="crime_code_selection">

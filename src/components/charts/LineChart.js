@@ -122,9 +122,9 @@ export default function LineChart() {
     return (
         // takes care of dynamic titles / update button / rendering chart
         <div>
-            {dates.start === '' && <h2 style={{ fontFamily: "verdana" }}>
+            {(dates.start === '' || dates.end === '') && <h2 style={{ fontFamily: "verdana" }}>
                 Average New Covid Cases by Month</h2>}
-            {dates.start !== '' && <h2 style={{ fontFamily: "verdana" }}>
+            {(dates.start !== '' && dates.end !== '') && <h2 style={{ fontFamily: "verdana" }}>
                 Average New Covid Cases by Month from ({dates.start} to {dates.end})</h2>}
 
             <button onClick={() => setDates({
