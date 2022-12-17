@@ -109,7 +109,12 @@ const Maps = () => {
 
 			// set currentView div
 			if (startDate === '' && endDate === ''){
-				document.getElementById("currentView").textContent = "Currently Viewing: All " + current + " Cases In Dataset (DATE TO DATE)";
+				if (current === "COVID-19"){
+					document.getElementById("currentView").textContent = "Currently Viewing: All " + current + " Cases In Dataset (2020-04-01 to 2022-10-31)";
+				}
+				else {
+					document.getElementById("currentView").textContent = "Currently Viewing: All " + current + " Cases In Dataset (2019-01-01 to 2022-10-31)";
+				}
 			}
 			else{
 				document.getElementById("currentView").textContent = "Currently Viewing: " + current + " Cases From " + startDate + " To " + endDate;
