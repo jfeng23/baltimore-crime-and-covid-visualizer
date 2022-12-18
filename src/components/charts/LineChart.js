@@ -130,7 +130,7 @@ export default function LineChart() {
             {(dates.start !== '' && dates.end !== '') && <h2 style={{ fontFamily: "verdana" }}>
                 Average New Covid Cases by Month from ({dates.start} to {dates.end})</h2>}
 
-            <button onClick={() => setDates({
+            <button style={{ fontFamily: "verdana"}} onClick={() => setDates({
                 start: document.getElementById("start").value,
                 end: document.getElementById("end").value
             })}>Update</button>

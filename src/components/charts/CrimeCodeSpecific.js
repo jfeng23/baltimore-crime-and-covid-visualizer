@@ -149,8 +149,8 @@ export default function CrimeSpecific() {
             {(dates.start !== '' && dates.end !== '') && <h2 style={{ fontFamily: "verdana" }}>
                 Crime Code: {dates.crime_code} - {crimeCodes[dates.crime_code]}  Count by Month ({dates.start} to {dates.end})</h2>}
 
-            <label for="crime_code_selection">Choose a Crime Type: </label>
-            <select name="crime_code_selection" id="crime_code_selection">
+            <label style={{ fontFamily: "verdana"}} for="crime_code_selection">Choose a Crime Type: </label>
+            <select style={{ fontFamily: "verdana"}} name="crime_code_selection" id="crime_code_selection">
                 <option value="4E">Common Assault</option>
                 <option value="6C">Larceny</option>
                 <option value="1A">Homicide</option>
@@ -163,7 +163,7 @@ export default function CrimeSpecific() {
                 <option value="3AJF">Car Jacking</option>
             </select>
 
-            <button onClick={() => setDates({
+            <button style={{ fontFamily: "verdana"}} onClick={() => setDates({
                 start: document.getElementById("start").value,
                 end: document.getElementById("end").value,
                 crime_code: document.getElementById("crime_code_selection").value

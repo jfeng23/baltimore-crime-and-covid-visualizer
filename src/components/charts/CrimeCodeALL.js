@@ -135,7 +135,7 @@ export default function CrimeCodeAll() {
             {(dates.start !== '' && dates.end !== '') && <h2 style={{ fontFamily: "verdana" }}>
                 Sum of Crime Counts by Crime Code ({dates.start} to {dates.end})</h2>}
 
-            <button onClick={() => setDates({
+            <button style={{ fontFamily: "verdana"}} onClick={() => setDates({
                 start: document.getElementById("start").value,
                 end: document.getElementById("end").value
             })}>Update</button>
