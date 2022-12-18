@@ -1,7 +1,7 @@
 import React from "react";
-import { Nav, NavLink, NavMenu, NavHeader } 
+import { Nav, NavLink, NavMenu, NavHeader }
     from "./NavbarElements";
-  
+
 const Navbar = () => {
   return (
     <>
@@ -17,13 +17,13 @@ const Navbar = () => {
           <NavLink to="/charts" activeStyle>
             Charts
           </NavLink>
-          <NavLink to="/data" activeStyle>
-            Data
+          <NavLink to="/about" activeStyle>
+            About
           </NavLink>
         </NavMenu>
       </Nav>
     </>
   );
 };
-  
+
 export default Navbar;

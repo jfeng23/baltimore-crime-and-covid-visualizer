@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Home from './pages';
 import Maps from './pages/maps';
 import Charts from './pages/charts'
+import About from './pages/about';
 import Footer from './components/Footer';
 
 function App() {
@@ -16,6 +17,7 @@ return (
 		<Route exact path='/' element={<Home />} />
 		<Route path='/maps' element={<Maps />} />
 		<Route path='/charts' element={<Charts />} />
+		<Route path='/about' element={<About />} />
 	</Routes>
 	<Footer></Footer>
 	</Router>
@@ -23,4 +25,3 @@ return (
 }
 
 export default App;
-

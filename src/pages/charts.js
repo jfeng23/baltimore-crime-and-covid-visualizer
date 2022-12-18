@@ -1,12 +1,45 @@
-import React, { useEffect } from "react";
-import Selector from "../components/Selector";
+import React from "react";
+import LineChart from "../components/charts/LineChart";
+import CrimeCodeAll from "../components/charts/CrimeCodeALL";
+import Selector from "../components/ChartSelector";
+import CrimeSpecific from "../components/charts/CrimeCodeSpecific";
 
-const Charts = () => {
+// imports chart modules
+// !important cant run without it
+import {
+	Chart as ChartJS,
+	CategoryScale,
+	LinearScale,
+	BarElement,
+	Title,
+	Tooltip,
+	Legend,
+	ArcElement
+} from "chart.js";
 
-    const mapStyles = {
-    	overflow: "hidden",
-    	height: "100vh"
-	};
+ChartJS.register(
+	CategoryScale,
+	LinearScale,
+	BarElement,
+	Title,
+	Tooltip,
+	Legend,
+	ArcElement
+);
+
+// main charts function that calls other charts
+export default function Charts() {
+
+	// styling choices
+	const currentViewStyle = {
+		fontSize: "1.8em",
+		fontFamily: "Verdana",
+		display: "block",
+		padding: "10px",
+		textAlign: "center",
+		color: "white",
+		background: "#a3a3c2"
+	}
 
 	const row = {
 		display: 'flex',
@@ -22,21 +55,26 @@ const Charts = () => {
 	};
 
 	return (
+		// takes care of calling the different chart functions
+		// in seperate files
 		<div>
 			<div style={row}>
-
 				<div style={selectorFlex}>
 					<Selector></Selector>
 				</div>
-
-
 				<div style={bodyFlex}>
-					<div id="map" style={mapStyles}></div>
+					<div id="currentView" style={currentViewStyle}></div>
+					<div>
+						<LineChart />
+						<CrimeCodeAll />
+						<CrimeSpecific />
+					</div>
 				</div>
 
 			</div>
 		</div>
+
 	);
 };
 
-export default Charts;
+
